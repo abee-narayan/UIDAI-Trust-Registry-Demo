@@ -1,4 +1,4 @@
-import { SignJWT, importPKCS8, exportJWK } from 'jose';
+import { SignJWT, exportJWK } from 'jose';
 import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
@@ -35,9 +35,11 @@ export async function getKeys() {
   
   if (!privateKeyObj || cachedPem !== pem) {
     cachedPem = pem;
-    privateKeyObj = await importPKCS8(pem, 'RS256');
     
+    // Create Node KeyObject directly, as jose's importPKCS8 fails on PKCS1 PEMs
     const nodePrivateKey = crypto.createPrivateKey(pem);
+    privateKeyObj = nodePrivateKey;
+    
     const nodePublicKey = crypto.createPublicKey(nodePrivateKey);
     publicJwk = await exportJWK(nodePublicKey);
     publicJwk.kid = 'uidai-trust-anchor-key-1';
