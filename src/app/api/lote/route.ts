@@ -1,8 +1,40 @@
 import { NextResponse } from 'next/server';
 import { signLoTE, getKeys } from '@/lib/crypto';
+import fs from 'fs/promises';
+import path from 'path';
 
 export async function GET() {
   const { publicJwk } = await getKeys();
+
+  // Fetch dynamic verifiers
+  const verifiersPath = path.join(process.cwd(), 'data', 'verifiers.json');
+  let dynamicProviders: any[] = [];
+  try {
+    const verifiersData = await fs.readFile(verifiersPath, 'utf8');
+    const verifiers = JSON.parse(verifiersData);
+    
+    dynamicProviders = verifiers.map((v: any) => ({
+      tsp_name: v.name,
+      tsp_information: {
+        id: v.id,
+        domain: v.domain || ""
+      },
+      services: [
+        {
+          service_name: `Aadhaar Verifier (${v.integrationMethod})`,
+          service_type: "https://trust.aadhaar.gov.in/Trst/Svctype/IdV",
+          status: v.status === "Revoked" 
+            ? "https://trust.aadhaar.gov.in/Trst/Svcstatus/withdrawn" 
+            : "https://trust.aadhaar.gov.in/Trst/Svcstatus/granted",
+          service_digital_identity: {
+            x509_certificate: v.certificatePem
+          }
+        }
+      ]
+    }));
+  } catch {
+    // If file doesn't exist, just proceed
+  }
 
   // The ETSI TS 119 602 LoTE JSON format structure
   const lotePayload = {
@@ -23,7 +55,6 @@ export async function GET() {
             service_type: "https://trust.aadhaar.gov.in/Trst/Svctype/IdV",
             status: "https://trust.aadhaar.gov.in/Trst/Svcstatus/granted",
             service_digital_identity: {
-              // Simulating an onboarded public key in JWK format
               jwk: {
                 kty: "RSA",
                 e: "AQAB",
@@ -52,12 +83,12 @@ export async function GET() {
             service_type: "https://trust.aadhaar.gov.in/Trst/Svctype/IdV",
             status: "https://trust.aadhaar.gov.in/Trst/Svcstatus/granted",
             service_digital_identity: {
-              // Simulated X.509 certificate for centralized OpenID4VP
               x509_certificate: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..."
             }
           }
         ]
-      }
+      },
+      ...dynamicProviders
     ]
   };
 

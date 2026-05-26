@@ -91,6 +91,7 @@ export async function POST(req: NextRequest) {
       id: Date.now().toString(),
       name: verifierName,
       domain: domainName,
+      status: 'Active',
       integrationMethod,
       logoUrl,
       certificatePem: pemCert,
