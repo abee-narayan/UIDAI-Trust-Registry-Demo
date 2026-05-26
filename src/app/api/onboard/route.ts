@@ -3,6 +3,7 @@ import forge from 'node-forge';
 import JSZip from 'jszip';
 import fs from 'fs/promises';
 import path from 'path';
+import { getKeys } from '@/lib/crypto';
 
 export async function POST(req: NextRequest) {
   try {
@@ -32,10 +33,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Generate X.509 Certificate
-    const uidaiPrivateKeyPem = process.env.UIDAI_PRIVATE_KEY;
-    if (!uidaiPrivateKeyPem) {
-      throw new Error('UIDAI_PRIVATE_KEY not configured on server');
-    }
+    const { pem: uidaiPrivateKeyPem } = await getKeys();
 
     const uidaiPrivateKey = forge.pki.privateKeyFromPem(uidaiPrivateKeyPem);
     const verifierPublicKey = forge.pki.publicKeyFromPem(publicKeyPem);

@@ -1,22 +1,51 @@
-import { SignJWT, generateKeyPair, exportJWK, exportPKCS8, importPKCS8 } from 'jose';
+import { SignJWT, importPKCS8, exportJWK } from 'jose';
+import fs from 'fs/promises';
+import path from 'path';
+import crypto from 'crypto';
+import forge from 'node-forge';
 
-// In a real production environment, these would be stored securely (e.g. HSM, Vault, or env variables).
-// For the sake of this implementation, we will generate them in memory or use a static mock key.
+let cachedPem: string | null = null;
 let privateKeyObj: any = null;
-let publicKeyObj: any = null;
 let publicJwk: any = null;
 
+export async function getCAKeyPem(): Promise<string> {
+  const caKeyPath = path.join(process.cwd(), 'data', 'ca_key.pem');
+  try {
+    return await fs.readFile(caKeyPath, 'utf8');
+  } catch {
+    let pem = process.env.UIDAI_PRIVATE_KEY;
+    if (!pem) {
+      const keys = forge.pki.rsa.generateKeyPair(2048);
+      pem = forge.pki.privateKeyToPem(keys.privateKey);
+    }
+    await fs.mkdir(path.dirname(caKeyPath), { recursive: true });
+    await fs.writeFile(caKeyPath, pem, 'utf8');
+    return pem;
+  }
+}
+
+export function clearKeyCache() {
+  cachedPem = null;
+  privateKeyObj = null;
+  publicJwk = null;
+}
+
 export async function getKeys() {
-  if (!privateKeyObj) {
-    const { publicKey, privateKey } = await generateKeyPair('RS256', { extractable: true });
-    privateKeyObj = privateKey;
-    publicKeyObj = publicKey;
-    publicJwk = await exportJWK(publicKey);
+  const pem = await getCAKeyPem();
+  
+  if (!privateKeyObj || cachedPem !== pem) {
+    cachedPem = pem;
+    privateKeyObj = await importPKCS8(pem, 'RS256');
+    
+    const nodePrivateKey = crypto.createPrivateKey(pem);
+    const nodePublicKey = crypto.createPublicKey(nodePrivateKey);
+    publicJwk = await exportJWK(nodePublicKey);
     publicJwk.kid = 'uidai-trust-anchor-key-1';
     publicJwk.alg = 'RS256';
     publicJwk.use = 'sig';
   }
-  return { privateKey: privateKeyObj, publicKey: publicKeyObj, publicJwk };
+  
+  return { privateKey: privateKeyObj, publicJwk, pem };
 }
 
 export async function signLoTE(payload: any) {

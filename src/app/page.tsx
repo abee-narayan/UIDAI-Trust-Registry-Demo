@@ -83,6 +83,30 @@ export default function Home() {
     }
   };
 
+  const handleRotateKey = async () => {
+    const password = window.prompt("Enter Admin Password to rotate the Trust Anchor Key:");
+    if (!password) return;
+
+    try {
+      const response = await fetch('/api/admin/rotate-key', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${password}`
+        }
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to rotate key');
+      }
+
+      alert("Trust Anchor Key successfully rotated. All active verifier certificates have been regenerated.");
+      await fetchVerifiers(); // refresh
+    } catch (err: any) {
+      alert("Error: " + err.message);
+    }
+  };
+
   return (
     <div className="animate-fade-in">
       <header style={{ textAlign: "center", margin: "4rem 0" }}>
@@ -102,10 +126,13 @@ export default function Home() {
         >
           The authoritative source for Aadhaar Verifiers. Enabling seamless verifiable credential exchange through cryptographically secured trust lists and OpenID Federation.
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
           <a href="/onboarding" className="btn-primary" style={{ textDecoration: 'none', padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}>
             Onboard New Verifier
           </a>
+          <button onClick={handleRotateKey} className="btn-secondary" style={{ padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}>
+            Rotate Trust Anchor Key
+          </button>
         </motion.div>
       </header>
 
