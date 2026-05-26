@@ -23,6 +23,7 @@ export default function RootLayout({
               <a href="/" className="active">Dashboard</a>
               <a href="/docs">Developer Docs</a>
               <a href="/api/lote" target="_blank">LoTE API</a>
+              <a href="/api/crl" target="_blank">Revocation List (CRL)</a>
               <a href="/.well-known/openid-federation" target="_blank">OpenID Federation</a>
               <a href="/onboarding">Onboard</a>
             </div>

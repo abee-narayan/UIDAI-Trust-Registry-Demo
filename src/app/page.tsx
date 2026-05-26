@@ -15,9 +15,12 @@ type TrustEntity = {
 export default function Home() {
   const [entities, setEntities] = useState<TrustEntity[]>([]);
   const [selectedEntity, setSelectedEntity] = useState<TrustEntity | null>(null);
+  
+  // Revocation state
+  const [isRevoking, setIsRevoking] = useState(false);
+  const [revokeError, setRevokeError] = useState('');
 
-  useEffect(() => {
-    async function fetchVerifiers() {
+  const fetchVerifiers = async () => {
       try {
         const response = await fetch('/api/verifiers');
         if (response.ok) {
@@ -27,7 +30,7 @@ export default function Home() {
             id: v.id,
             name: v.name,
             type: v.integrationMethod,
-            status: "Active",
+            status: v.status || "Active",
             domain: v.domain || "N/A",
             logoUrl: v.logoUrl,
             cryptoData: v.certificatePem
@@ -42,9 +45,43 @@ export default function Home() {
       } catch (err) {
         console.error(err);
       }
-    }
+  };
+
+  useEffect(() => {
     fetchVerifiers();
   }, []);
+
+  const handleRevoke = async (verifierId: string) => {
+    const password = window.prompt("Enter Admin Password to revoke this verifier:");
+    if (!password) return;
+
+    try {
+      setIsRevoking(true);
+      setRevokeError('');
+      
+      const response = await fetch('/api/verifiers/revoke', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${password}`
+        },
+        body: JSON.stringify({ verifierId })
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to revoke');
+      }
+
+      alert("Verifier successfully revoked.");
+      await fetchVerifiers();
+      setSelectedEntity(prev => prev ? { ...prev, status: "Revoked" } : null);
+    } catch (err: any) {
+      setRevokeError(err.message);
+    } finally {
+      setIsRevoking(false);
+    }
+  };
 
   return (
     <div className="animate-fade-in">
@@ -181,8 +218,23 @@ export default function Home() {
                   </div>
                 )}
               </div>
-              <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end' }}>
-                <button className="btn-primary" onClick={() => setSelectedEntity(null)}>Close Details</button>
+              <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  {revokeError && <span style={{ color: '#f87171', fontSize: '0.85rem' }}>{revokeError}</span>}
+                </div>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                  {selectedEntity.status !== 'Revoked' && (
+                    <button 
+                      className="btn-secondary" 
+                      style={{ color: '#f87171', borderColor: 'rgba(239, 68, 68, 0.3)' }}
+                      onClick={() => handleRevoke(selectedEntity.id)}
+                      disabled={isRevoking}
+                    >
+                      {isRevoking ? 'Revoking...' : 'Revoke Verifier'}
+                    </button>
+                  )}
+                  <button className="btn-primary" onClick={() => { setSelectedEntity(null); setRevokeError(''); }}>Close Details</button>
+                </div>
               </div>
             </motion.div>
           </div>
