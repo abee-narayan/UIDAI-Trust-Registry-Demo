@@ -14,6 +14,7 @@ export default function Onboarding() {
 
   // Form Data
   const [verifierName, setVerifierName] = useState('');
+  const [domainName, setDomainName] = useState('');
   
   // Keys
   const [algorithm, setAlgorithm] = useState('RS256');
@@ -54,8 +55,8 @@ export default function Onboarding() {
   const handleSubmit = async () => {
     const finalPublicKey = customPublicKey.trim() || keys?.publicKey;
 
-    if (!verifierName || !finalPublicKey || !integrationMethod || !logo) {
-      setError('Please fill in all required fields (including a public key).');
+    if (!verifierName || !domainName || !finalPublicKey || !integrationMethod || !logo) {
+      setError('Please fill in all required fields (including domain and public key).');
       return;
     }
 
@@ -65,6 +66,7 @@ export default function Onboarding() {
       
       const formData = new FormData();
       formData.append('verifierName', verifierName);
+      formData.append('domainName', domainName);
       formData.append('publicKey', finalPublicKey);
       formData.append('integrationMethod', integrationMethod);
       formData.append('logo', logo);
@@ -103,7 +105,7 @@ export default function Onboarding() {
   };
 
   const nextStep = () => {
-    if (step === 1 && !verifierName) return setError('Please enter a verifier name');
+    if (step === 1 && (!verifierName || !domainName)) return setError('Please enter your verifier name and domain name');
     setError('');
     setStep(s => s + 1);
   };
@@ -177,6 +179,16 @@ export default function Onboarding() {
                       value={verifierName}
                       onChange={(e) => setVerifierName(e.target.value)}
                       placeholder="e.g. Acme Corp"
+                      className={styles.input}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Domain Name</label>
+                    <input
+                      type="text"
+                      value={domainName}
+                      onChange={(e) => setDomainName(e.target.value)}
+                      placeholder="e.g. acme.com"
                       className={styles.input}
                     />
                   </div>

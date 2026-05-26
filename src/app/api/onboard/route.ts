@@ -8,11 +8,12 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const verifierName = formData.get('verifierName') as string;
+    const domainName = formData.get('domainName') as string;
     const publicKeyPem = formData.get('publicKey') as string;
     const integrationMethod = formData.get('integrationMethod') as string;
     const logoFile = formData.get('logo') as File | null;
 
-    if (!verifierName || !publicKeyPem || !integrationMethod) {
+    if (!verifierName || !domainName || !publicKeyPem || !integrationMethod) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -89,6 +90,7 @@ export async function POST(req: NextRequest) {
     const newVerifier = {
       id: Date.now().toString(),
       name: verifierName,
+      domain: domainName,
       integrationMethod,
       logoUrl,
       certificatePem: pemCert,

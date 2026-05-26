@@ -28,7 +28,7 @@ export default function Home() {
             name: v.name,
             type: v.integrationMethod,
             status: "Active",
-            domain: "N/A",
+            domain: v.domain || "N/A",
             logoUrl: v.logoUrl,
             cryptoData: v.certificatePem
           }));
