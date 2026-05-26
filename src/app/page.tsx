@@ -17,13 +17,33 @@ export default function Home() {
   const [selectedEntity, setSelectedEntity] = useState<TrustEntity | null>(null);
 
   useEffect(() => {
-    // Mock entities for demonstration
-    setEntities([
-      { id: "VER-1001", name: "Ministry of Health", type: "Proprietary", status: "Active", domain: "health.gov.in", cryptoData: JSON.stringify({ jwk: { kty: "RSA", e: "AQAB", n: "mock_modulus...", alg: "RS256" }, aadhaar_extensions: { ac: "1a2f" } }, null, 2) },
-      { id: "VER-1002", name: "State Bank of India", type: "OpenID4VP (Federated)", status: "Active", domain: "sbi.co.in", cryptoData: JSON.stringify({ federation_fetch_endpoint: "/api/federation/fetch?sub=https://sbi.co.in" }, null, 2) },
-      { id: "VER-1003", name: "DigiLocker", type: "OpenID4VP (Centralized)", status: "Active", domain: "digilocker.gov.in", cryptoData: JSON.stringify({ x509_certificate: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..." }, null, 2) },
-      { id: "VER-1004", name: "Private Telecom Co", type: "Proprietary", status: "Revoked", domain: "telecom.example.com", cryptoData: "Revoked credentials hidden." },
-    ]);
+    async function fetchVerifiers() {
+      try {
+        const response = await fetch('/api/verifiers');
+        if (response.ok) {
+          const data = await response.json();
+          // Map to match TrustEntity structure
+          const formatted = data.map((v: any) => ({
+            id: v.id,
+            name: v.name,
+            type: v.integrationMethod,
+            status: "Active",
+            domain: "N/A",
+            logoUrl: v.logoUrl,
+            cryptoData: v.certificatePem
+          }));
+          
+          setEntities([
+            ...formatted,
+            { id: "VER-1001", name: "Ministry of Health", type: "proprietary", status: "Active", domain: "health.gov.in", cryptoData: JSON.stringify({ jwk: { kty: "RSA", e: "AQAB", n: "mock_modulus...", alg: "RS256" } }, null, 2) },
+            { id: "VER-1002", name: "State Bank of India", type: "federated", status: "Active", domain: "sbi.co.in", cryptoData: JSON.stringify({ federation_fetch_endpoint: "/api/federation/fetch?sub=https://sbi.co.in" }, null, 2) },
+          ]);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchVerifiers();
   }, []);
 
   return (
@@ -41,10 +61,15 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          style={{ color: "var(--text-secondary)", fontSize: "1.125rem", maxWidth: "600px", margin: "0 auto" }}
+          style={{ color: "var(--text-secondary)", fontSize: "1.125rem", maxWidth: "600px", margin: "0 auto", paddingBottom: "2rem" }}
         >
           The authoritative source for Aadhaar Verifiers. Enabling seamless verifiable credential exchange through cryptographically secured trust lists and OpenID Federation.
         </motion.p>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+          <a href="/onboarding" className="btn-primary" style={{ textDecoration: 'none', padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}>
+            Onboard New Verifier
+          </a>
+        </motion.div>
       </header>
 
       <section className="grid-cards">
@@ -100,11 +125,22 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {entities.map((entity) => (
+                {entities.map((entity: any) => (
                   <tr key={entity.id}>
                     <td>
-                      <div style={{ fontWeight: 500, color: "var(--text-primary)" }}>{entity.name}</div>
-                      <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>{entity.id}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        {entity.logoUrl ? (
+                          <img src={entity.logoUrl} alt="Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', background: '#fff' }} />
+                        ) : (
+                          <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <span style={{ fontSize: '1.2rem' }}>🏛️</span>
+                          </div>
+                        )}
+                        <div>
+                          <div style={{ fontWeight: 500, color: "var(--text-primary)" }}>{entity.name}</div>
+                          <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>{entity.id}</div>
+                        </div>
+                      </div>
                     </td>
                     <td style={{ fontFamily: "monospace", fontSize: "0.9rem" }}>{entity.domain}</td>
                     <td>
