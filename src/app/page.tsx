@@ -16,6 +16,10 @@ export default function Home() {
   const [entities, setEntities] = useState<TrustEntity[]>([]);
   const [selectedEntity, setSelectedEntity] = useState<TrustEntity | null>(null);
   
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   // Revocation state
   const [isRevoking, setIsRevoking] = useState(false);
   const [revokeError, setRevokeError] = useState('');
@@ -36,11 +40,12 @@ export default function Home() {
             cryptoData: v.certificatePem
           }));
           
-          setEntities([
+          const allEntities = [
             ...formatted,
             { id: "VER-1001", name: "Ministry of Health", type: "proprietary", status: "Active", domain: "health.gov.in", cryptoData: JSON.stringify({ jwk: { kty: "RSA", e: "AQAB", n: "mock_modulus...", alg: "RS256" } }, null, 2) },
             { id: "VER-1002", name: "State Bank of India", type: "federated", status: "Active", domain: "sbi.co.in", cryptoData: JSON.stringify({ federation_fetch_endpoint: "/api/federation/fetch?sub=https://sbi.co.in" }, null, 2) },
-          ]);
+          ];
+          setEntities(allEntities.reverse());
         }
       } catch (err) {
         console.error(err);
@@ -106,6 +111,9 @@ export default function Home() {
       alert("Error: " + err.message);
     }
   };
+
+  const totalPages = Math.ceil(entities.length / itemsPerPage);
+  const currentEntities = entities.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="animate-fade-in">
@@ -189,7 +197,7 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {entities.map((entity: any) => (
+                {currentEntities.map((entity: any) => (
                   <tr key={entity.id}>
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -223,6 +231,29 @@ export default function Home() {
               </tbody>
             </table>
           </div>
+          {totalPages > 1 && (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem', gap: '1rem', borderTop: '1px solid var(--border)' }}>
+              <button 
+                className="btn-secondary" 
+                style={{ padding: '0.4rem 1rem', fontSize: '0.9rem' }}
+                disabled={currentPage <= 1} 
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              >
+                Previous
+              </button>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button 
+                className="btn-secondary" 
+                style={{ padding: '0.4rem 1rem', fontSize: '0.9rem' }}
+                disabled={currentPage >= totalPages} 
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

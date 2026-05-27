@@ -41,5 +41,55 @@
     "logoUrl": "/logos/1779793818589-bsgzzy.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICyDCCAbCgAwIBAgIHF3mABClQBDANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MTMwMDI5WhcNMjcwNTI2MTMw\r\nMDI5WjAQMQ4wDAYDVQQDEwVVSURBSTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC\r\nAQoCggEBAL8CmW15wMEUKcxg697h7Ic82TCd/NP+kFbYfRcbWA8/+XKoDpf85gLB\r\nsNRGLxFMJXBeiBYJ7qTqyLXDxrHBSphn4JVRxxPLDZXqTSlt27njTdbQ2mVJOum0\r\nLwZwu3CvinPpj4bl0kjWL4vRFKFYPjJioSEXk7iMN/+7NxPTSOFgtxBmeVOt3fCe\r\n9ZfUhK1Z7P62yErKMgLxrMO6DZm11RQkvAVwiFlF7AF+c89psqg9Sby7L2TUtMfG\r\nsVPtXxo96xONS1WQmPmRHEXDusu+zlbWBlS6FOiyehydIC3Ypa11JH9dHelBJv7w\r\nQBkwocy++7Elcb3B+bNyc4188vYodLcCAwEAAaMaMBgwCQYDVR0TBAIwADALBgNV\r\nHQ8EBAMCBPAwDQYJKoZIhvcNAQELBQADggEBAGRBrgznkGpzhCG6ZB4LnBj/fFU4\r\nUo9xHpdXA7uG4PxJ7kYbow5x+Mx7LVnNVE5DKlEdTRV2ktmVafnZyZ6Gmo7PatLm\r\nz3lGCT/RY7wDL+9v41OvyDAySs8M2/zZMA0JwKXEad4DVxbqLo8vt7+SBG+CzDtv\r\nYab0hVft7Wg+9IK1hei+QmHcDPzLaLhqlYe39+L3ELnhP/THqjr3I55CwpYv/O9D\r\nDtF5tdBSPjRZrbP0iL4MEp/1DoCdpZ4+1Nfis8P2BUfPTefNKZMnh4quZrXr06op\r\nrCq+UH96cKmC0rTCuFt3U0n+IBjq7slyzytWap+NyQLnDHUd6xDKD03Ubjo=\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-26T11:10:18.668Z"
+  },
+  {
+    "id": "1779800759704",
+    "name": "ABEE",
+    "domain": "Uidai.gov.in",
+    "status": "Active",
+    "integrationMethod": "federated",
+    "logoUrl": "/logos/1779800759577-r6ze9b.svg",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxzCCAa+gAwIBAgIHAXeYAHWWBjANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MTMwNTU5WhcNMjcwNTI2MTMw\r\nNTU5WjAPMQ0wCwYDVQQDEwRBQkVFMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\r\nCgKCAQEA0wNQ0D2goQBS93vNjq/tZ+PTtGRDAkC/jaQqadxnw2qTrRuYRBBdjuVg\r\nMdFD+4xncWeBstNEohaYN85zc8J3JYZtOY5kfIrJINRToFXWUTiguNmtVFAk+mGK\r\n/oPproLPxqkaWBj5zrCyJsF7WbjCmHkApL4/2Ephjhjwl3Cb8zQ/az9yicnYl1ba\r\nfiLW/hHps27Tg0gkt6FJpg3IC/0qUO/YtrtPlYZMXJxA9GQNJKbW2e6kxIbuilHs\r\nVpQfh2bnky2Vn5mGuDwXsECmYxYNrovmcx9k/xbnNMy/379ZeBmYBIGZ1PhaUIMs\r\nPtaP/nSju6Fd/SvM9P5fjEPyHHDFiQIDAQABoxowGDAJBgNVHRMEAjAAMAsGA1Ud\r\nDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEATXf/7ipLCD11eeXf5g6tAYcRvrze\r\nxqccHA5gX/hSTw0bV9480hfjdcLdWzmnxPSMLuFE+30EhCU6vhTy98Z0FQzrl2DH\r\nn2VzMNG/PDb8/Vp7Wc0ZoH/XOvjpbN20/BrHm3Cx6iaip2zAW0MemBHrslCw+d3O\r\nzPWuSFu1Wsji/v36WC9le7VBGv+wwCKXni3lPfUSeGDKAwsXSvmrQKhu0SmQe+nm\r\nO3BpRRhVvfVz/HislEZLAoywNdI10dhRKXTi9qdo/VQG/XKao+0IwZKFUiwrOTbc\r\ng9KYz/iYOkMO1Hlew688YrHssMjNTwvp9wNCrGTKbuCreevAsVuCF7FUVQ==\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-26T13:05:59.704Z"
+  },
+  {
+    "id": "1779882975473",
+    "name": "Telengana",
+    "domain": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify-your-pan",
+    "status": "Active",
+    "integrationMethod": "federated",
+    "logoUrl": "/logos/1779882975281-w2hs1s.svg",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICzDCCAbSgAwIBAgIHAXeYgpdSkzANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTE1NjE1WhcNMjcwNTI3MTE1\r\nNjE1WjAUMRIwEAYDVQQDEwlUZWxlbmdhbmEwggEiMA0GCSqGSIb3DQEBAQUAA4IB\r\nDwAwggEKAoIBAQCWwwfEDFMgCqqLiupuNA67uPe4g2hqJ3d9YulHtJK12gGGeFG4\r\npy9/Giz7aaoQWDU5Pkamln72SjIKRSxUYpLT7k6eeGIb8cS3TVRqu6pmxqe3Qy5g\r\n8hfUiNHRL2jAE4jqcsys7U2XW4DorUF2pnoYbWPvATthRG4HWXwA+VJWMv/FixjA\r\nAR7FpGmefJc2xzCa9zvbys7fWdcJSkA/3uK4OxVzvwFXw5j9y3bsjZ/fOGMrb/5J\r\n4SDXjCTY7IOJ/bsCBdORF69Gny6HfsywUD2bm3D3Q9vlK+XENieN2widJ10l4VeP\r\nL+pKJ7tsEjL9pnSY/BM99VoBAz82XoDm1iczAgMBAAGjGjAYMAkGA1UdEwQCMAAw\r\nCwYDVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQCBgsBY/rcqJwloyh+iUa8H\r\ng5OMbjDnDs98K8f4SfHaZnKhOp2XfyevD9aR1PxHjLIRaWNLu/CK3i6DGm++wlYF\r\nFR9oVi3K9lFW2gAtm4i3glQw6jsHbbH0lkcwd67edE0vxtct4PJHxza100S3jv0w\r\nvQ3Vj9ua2bu+pw8gBSbWA2bY+wRRropKcsQJhpySNNXtNf/HLKsB2LvP/hEnirKb\r\nolH5DkIBdi/sobDM/AJItw0WbwKEU+Om8aCZg0n0K1SOIgeX5qT1AZ8qwR3MEVJG\r\nCoGEd3NhyJXkwiCWB+mTk14lHNY6FLznDN94jhDNxq0iA5Dxax2QVye789XisRWw\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-27T11:56:15.473Z"
+  },
+  {
+    "id": "1779883061907",
+    "name": "Test Corp",
+    "domain": "test.com",
+    "status": "Active",
+    "integrationMethod": "proprietary",
+    "logoUrl": "/logos/1779883061776-9t5ta.png",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICzDCCAbSgAwIBAgIHAXeYgwYXiDANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTE1NzQxWhcNMjcwNTI3MTE1\r\nNzQxWjAUMRIwEAYDVQQDEwlUZXN0IENvcnAwggEiMA0GCSqGSIb3DQEBAQUAA4IB\r\nDwAwggEKAoIBAQDezwrWTo7X6gqRXPSkHwTSYT83187/hH9P3Hj14D9X/MzWE5DX\r\n2M7QTucX0nhtmrWT8X/DQbXkuoHiUjRn07X5j0XptmU/Xlb7MupDhf7XHn7Rzw3y\r\ndTijTDbx7hW/wX+fR7or28TVs7uXhDwHpvdPXL+bYP9Twfpn+zt30Dha9D0z6FPd\r\njHvA7S/xeTp75SrWv+bVT+wrSn0PbDULuPs3c75DPiY/kjx5bj5Dcm9furgjkbWp\r\nDj5zVvtP3P+/xHgvQjxXjDjD1fZ7Zn1TY/hnizyzlDZDivwjmzUT9ftPnL+zwrij\r\nfHdferqflz1z0/fHXPhXdDwzYnYzkvWDnHcpAgMBAAGjGjAYMAkGA1UdEwQCMAAw\r\nCwYDVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQCSg2xJTMoMFMt+mL3QjdW1\r\n7xunTj0yPap04aEewJRjLngH27eMDiqPzaj+vdoTWY1RdNopxRjW5jbwG+nJhNks\r\nic8t+/jnpm054jITcvtGe2w87gPlS/HxrDQrgEevnSIY2UwkEGysbt8Or0uXkX1o\r\nLhOl09paZlRzpCR9HjElk1kFhrkgazXp18tzgpH7ZcvLFOaZLF9ainQNfZT/KRNA\r\nj3zho1pH6pfq/uXBnudGakKbbchdIHXs5gv9OhXOBuQ9YuOIPedHvSOWjsi4x7H6\r\n9pZ/3rkKzELhYao2HWXd1fARTagfW3YrdTLMuK+bmzn5narRZc4LKljnqg++RAw0\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-27T11:57:41.907Z"
+  },
+  {
+    "id": "1779884477183",
+    "name": "Prassanna's company",
+    "domain": "sandbox.uidai.gov.in",
+    "status": "Active",
+    "integrationMethod": "federated",
+    "logoUrl": "/logos/1779884477034-qkzci.svg",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIIC1jCCAb6gAwIBAgIHAXeYhEdwUTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTIyMTE3WhcNMjcwNTI3MTIy\r\nMTE3WjAeMRwwGgYDVQQDExNQcmFzc2FubmEncyBjb21wYW55MIIBIjANBgkqhkiG\r\n9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlsMHxAxTIAqqi4rqbjQOu7j3uINoaid3fWLp\r\nR7SStdoBhnhRuKcvfxos+2mqEFg1OT5GppZ+9koyCkUsVGKS0+5OnnhiG/HEt01U\r\naruqZsant0MuYPIX1IjR0S9owBOI6nLMrO1Nl1uA6K1BdqZ6GG1j7wE7YURuB1l8\r\nAPlSVjL/xYsYwAEexaRpnnyXNscwmvc728rO31nXCUpAP97iuDsVc78BV8OY/ct2\r\n7I2f3zhjK2/+SeEg14wk2OyDif27AgXTkRevRp8uh37MsFA9m5tw90Pb5SvlxDYn\r\njdsInSddJeFXjy/qSie7bBIy/aZ0mPwTPfVaAQM/Nl6A5tYnMwIDAQABoxowGDAJ\r\nBgNVHRMEAjAAMAsGA1UdDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAXHiOacqa\r\nAFg3qnpdZZQ/2KDtDfAGt4YZiypDHOTfEnUJNGFzqkLsAr+AyrkSfrm8sBWBIVdk\r\nb/UzTY3e3ZSO2xtxnpDS3LMhpHZXsMXUnpHvAsdEEHK6Fmkgd9QVvk91DJrVeuak\r\nQPZqC0H2xbJBWYwlBehZ5uQXDG5W1v7kTouNI51GT6iSIBhTXPF3ynGLrrZz20Yl\r\nskeXJ+vYoPobS//ojSsh5jK6lIeB0hPjCAx0vk4a32klIdmZU6jMjypSV73BYP3Z\r\nwQgMBloD9V65gTQtsiH36krg0vP24ysEPu/3rYIb4uEGv4JFPSgqp9Gjo8YgYiIt\r\nBh0KyITqVTDKPA==\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-27T12:21:17.183Z"
+  },
+  {
+    "id": "1779884732425",
+    "name": "Zach's company",
+    "domain": "sandbox.gov.in",
+    "status": "Active",
+    "integrationMethod": "federated",
+    "logoUrl": "/logos/1779884732244-byd02s.svg",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIIC0TCCAbmgAwIBAgIHAXeYhHMicTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTIyNTMyWhcNMjcwNTI3MTIy\r\nNTMyWjAZMRcwFQYDVQQDEw5aYWNoJ3MgY29tcGFueTCCASIwDQYJKoZIhvcNAQEB\r\nBQADggEPADCCAQoCggEBAJbDB8QMUyAKqouK6m40Dru497iDaGond31i6Ue0krXa\r\nAYZ4UbinL38aLPtpqhBYNTk+RqaWfvZKMgpFLFRiktPuTp54YhvxxLdNVGq7qmbG\r\np7dDLmDyF9SI0dEvaMATiOpyzKztTZdbgOitQXamehhtY+8BO2FEbgdZfAD5UlYy\r\n/8WLGMABHsWkaZ58lzbHMJr3O9vKzt9Z1wlKQD/e4rg7FXO/AVfDmP3LduyNn984\r\nYytv/knhINeMJNjsg4n9uwIF05EXr0afLod+zLBQPZubcPdD2+Ur5cQ2J43bCJ0n\r\nXSXhV48v6konu2wSMv2mdJj8Ez31WgEDPzZegObWJzMCAwEAAaMaMBgwCQYDVR0T\r\nBAIwADALBgNVHQ8EBAMCBPAwDQYJKoZIhvcNAQELBQADggEBAIAKp7nJmaTpIhUc\r\nvrr8iQlsaNRkY8bvv7f3xaAx35YkwYojtPkgF2gZmfjGgCH2uB+2iv5FHlX1/LT7\r\nsa1xWGb1N+35MvXeFtu7gjOc6QXcdg4boEQSbuo2WpBCeACVhhlj1W2VIZfCkkSP\r\n8QD39AWK3pm8Kjx42SlCEe36LcNkz6SRa1Fanz46WXTX9HH0P+Wvs0KmsrAkmkTh\r\n7WIDc84kGKNzZBpR8EaBd9Uh9wfP8AuZ8FrX1AVjNEmZbcaDsR6vsbgQSqN1/zdY\r\nF2sBZI/B1f52Iaer45mkTzuogdLu5CJCXItOc5Fn4kRP9IYZUcH2GbXTSopGFg2W\r\nOgR5Tl8=\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-27T12:25:32.425Z"
   }
 ]
