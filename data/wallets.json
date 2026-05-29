@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1780040442748",
+    "name": "Samsung",
+    "domain": "samsung.com",
+    "status": "Active",
+    "integrationMethod": "federated",
+    "logoUrl": "/logos/1780040442576-gz7n8.svg",
+    "androidPackageName": "com.samsung.android",
+    "callbackUrl": "samsung.com/wallet/aadhaar",
+    "contactInfo": "7907779096",
+    "encryptionKey": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArxp9r1z0rqSmHdwnBEiR\r\nmiGGCTFSSk1l5H/uEoJw4uja3sWv6Nb7Ri1Nrmr6hMSynQdaVo+WhD2+l+HG0s6a\r\nhgEgNeC/9+Pw+VWjDrsMMvI83VYYvfaKdJcDq5glNvWcgzfEhFE2vox7/zsxUUwc\r\nuNhz7poYyGdWfIBGJRtCDPz4LJnsKbG4+HY9Me0xvc5SIi49WMUxJq7jbRpS1TaY\r\njYe3ObSmhc3wRdfQwfwBkf4bdCnXOdEJMoC84baKYdXsm2G9AkgpAtiWjlBpraz0\r\nVo+gNjSuEszLpMpkJb9JPLdWpJ72ghHJhuvjSH5Mwic6s+GF/Ml+thgg7+9bAU7c\r\n3wIDAQAB\r\n-----END PUBLIC KEY-----",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICyjCCAbKgAwIBAgIHAXgAQEQlkjANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI5MDc0MDQyWhcNMjcwNTI5MDc0\r\nMDQyWjASMRAwDgYDVQQDEwdTYW1zdW5nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A\r\nMIIBCgKCAQEArxp9r1z0rqSmHdwnBEiRmiGGCTFSSk1l5H/uEoJw4uja3sWv6Nb7\r\nRi1Nrmr6hMSynQdaVo+WhD2+l+HG0s6ahgEgNeC/9+Pw+VWjDrsMMvI83VYYvfaK\r\ndJcDq5glNvWcgzfEhFE2vox7/zsxUUwcuNhz7poYyGdWfIBGJRtCDPz4LJnsKbG4\r\n+HY9Me0xvc5SIi49WMUxJq7jbRpS1TaYjYe3ObSmhc3wRdfQwfwBkf4bdCnXOdEJ\r\nMoC84baKYdXsm2G9AkgpAtiWjlBpraz0Vo+gNjSuEszLpMpkJb9JPLdWpJ72ghHJ\r\nhuvjSH5Mwic6s+GF/Ml+thgg7+9bAU7c3wIDAQABoxowGDAJBgNVHRMEAjAAMAsG\r\nA1UdDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAXZOAtSKhSvM5n2vUGtaY31PI\r\n/bdDFplX8M9U7nwiFy86XinrnLTsJnHVrqFJKuBih6ZWSxErwCTtkCmGL8SRFyO8\r\n5ccm0N9fXiAwnsNp6pJKAtkNrWlIfsUey4uzO2w69xM2TqAATtnb6wEkz6FrYeho\r\n4hkhtafDt/1xHdyfpekT64bP1qlIZBO0yKwiY3+5VC27iFe8T0/H0f4TdoFxMVzR\r\nw09P5GphaTvHspARPl6F6s0bTj3krWeUbs5SmRRnYze7nj87szfZ3RHCqm6pJYFI\r\nX8cTvoRm3p9uCJ78mw0N31RcOxx0+qPMljsC+fRUVUKaEtu/b53uHY9mBKx+yA==\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-29T07:40:42.749Z"
+  }
+]

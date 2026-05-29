@@ -1,23 +1,24 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { signLoTE, getKeys } from '@/lib/crypto';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const type = req.nextUrl.searchParams.get('type') || 'verifier';
     const { publicJwk } = await getKeys();
-    const verifiersPath = path.join(process.cwd(), 'data', 'verifiers.json');
-    let verifiers: any[] = [];
+    const dataPath = path.join(process.cwd(), 'data', type === 'wallet' ? 'wallets.json' : 'verifiers.json');
+    let entities: any[] = [];
     
     try {
-      const verifiersData = await fs.readFile(verifiersPath, 'utf8');
-      verifiers = JSON.parse(verifiersData);
+      const fileData = await fs.readFile(dataPath, 'utf8');
+      entities = JSON.parse(fileData);
     } catch {
-      // File might not exist yet, leave verifiers empty
+      // File might not exist yet, leave empty
     }
 
     // Filter for revoked verifiers
-    const revokedVerifiers = verifiers
+    const revokedVerifiers = entities
       .filter(v => v.status === 'Revoked')
       .map(v => ({
         id: v.id,

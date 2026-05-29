@@ -6,15 +6,19 @@ import { generateKeyPair, downloadFile } from '@/lib/clientCrypto';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
-export default function Onboarding() {
+export default function WalletOnboarding() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   // Form Data
-  const [verifierName, setVerifierName] = useState('');
+  const [walletName, setWalletName] = useState('');
   const [domainName, setDomainName] = useState('');
+  const [androidPackageName, setAndroidPackageName] = useState('');
+  const [callbackUrl, setCallbackUrl] = useState('');
+  const [contactInfo, setContactInfo] = useState('');
+  const [encryptionKey, setEncryptionKey] = useState('');
   
   // Keys
   const [algorithm, setAlgorithm] = useState('RS256');
@@ -27,7 +31,7 @@ export default function Onboarding() {
   // Integration & Logo
   const [logo, setLogo] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState('');
-  const [integrationMethod, setIntegrationMethod] = useState('');
+  const [integrationMethod, setIntegrationMethod] = useState('openid4vci');
 
   const handleGenerateKeys = async () => {
     try {
@@ -55,7 +59,7 @@ export default function Onboarding() {
   const handleSubmit = async () => {
     const finalPublicKey = customPublicKey.trim() || keys?.publicKey;
 
-    if (!verifierName || !domainName || !finalPublicKey || !integrationMethod || !logo) {
+    if (!walletName || !domainName || !finalPublicKey || !integrationMethod || !logo) {
       setError('Please fill in all required fields (including domain and public key).');
       return;
     }
@@ -65,13 +69,17 @@ export default function Onboarding() {
       setError('');
       
       const formData = new FormData();
-      formData.append('verifierName', verifierName);
+      formData.append('walletName', walletName);
       formData.append('domainName', domainName);
+      formData.append('androidPackageName', androidPackageName);
+      formData.append('callbackUrl', callbackUrl);
+      formData.append('contactInfo', contactInfo);
+      formData.append('encryptionKey', encryptionKey);
       formData.append('publicKey', finalPublicKey);
       formData.append('integrationMethod', integrationMethod);
       formData.append('logo', logo);
 
-      const response = await fetch('/api/onboard', {
+      const response = await fetch('/api/wallets/onboard', {
         method: 'POST',
         body: formData,
       });
@@ -87,7 +95,7 @@ export default function Onboarding() {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = `${verifierName.replace(/\s+/g, '_')}_x509_certificate.zip`;
+      a.download = `${walletName.replace(/\s+/g, '_')}_x509_certificate.zip`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -105,7 +113,7 @@ export default function Onboarding() {
   };
 
   const nextStep = () => {
-    if (step === 1 && (!verifierName || !domainName)) return setError('Please enter your verifier name and domain name');
+    if (step === 1 && (!walletName || !domainName)) return setError('Please enter your wallet name and domain name');
     setError('');
     setStep(s => s + 1);
   };
@@ -119,7 +127,7 @@ export default function Onboarding() {
         {/* Header */}
         <div className={styles.header}>
           <h2 className={`gradient-text ${styles.title}`}>
-            Verifier Onboarding
+            Wallet Onboarding
           </h2>
           <p className={styles.subtitle}>
             Join the UIDAI Trust Registry in 3 simple steps
@@ -173,12 +181,12 @@ export default function Onboarding() {
                     <span>Basic Details</span>
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Verifier Name</label>
+                    <label className={styles.label}>Wallet Name</label>
                     <input
                       type="text"
-                      value={verifierName}
-                      onChange={(e) => setVerifierName(e.target.value)}
-                      placeholder="e.g. Acme Corp"
+                      value={walletName}
+                      onChange={(e) => setWalletName(e.target.value)}
+                      placeholder="e.g. Acme Wallet"
                       className={styles.input}
                     />
                   </div>
@@ -189,6 +197,36 @@ export default function Onboarding() {
                       value={domainName}
                       onChange={(e) => setDomainName(e.target.value)}
                       placeholder="e.g. acme.com"
+                      className={styles.input}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Android Package Name</label>
+                    <input
+                      type="text"
+                      value={androidPackageName}
+                      onChange={(e) => setAndroidPackageName(e.target.value)}
+                      placeholder="e.g. com.example.wallet"
+                      className={styles.input}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Wallet Callback URL</label>
+                    <input
+                      type="text"
+                      value={callbackUrl}
+                      onChange={(e) => setCallbackUrl(e.target.value)}
+                      placeholder="e.g. examplewallet://"
+                      className={styles.input}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Contact Information</label>
+                    <input
+                      type="text"
+                      value={contactInfo}
+                      onChange={(e) => setContactInfo(e.target.value)}
+                      placeholder="Email or Phone Number"
                       className={styles.input}
                     />
                   </div>
@@ -314,6 +352,19 @@ export default function Onboarding() {
                   </div>
 
                   <div className={styles.formGroup} style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
+                    <label className={styles.label}>Wallet Public Encryption Key</label>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.85rem' }}>
+                      Provide the public encryption key used by your wallet for verifiable credentials.
+                    </p>
+                    <textarea 
+                      value={encryptionKey}
+                      onChange={(e) => setEncryptionKey(e.target.value)}
+                      placeholder="-----BEGIN PUBLIC KEY-----&#10;...&#10;-----END PUBLIC KEY-----"
+                      className={styles.textarea}
+                    />
+                  </div>
+
+                  <div className={styles.formGroup} style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
                     <label className={styles.label}>Provide Own Public Key (Optional)</label>
                     <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.85rem' }}>
                       If you prefer not to use the browser-generated keys from Step 2, you can paste your own Public Key (in PEM format) here.
@@ -329,7 +380,7 @@ export default function Onboarding() {
                   <div className={styles.formGroup} style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
                     <label className={styles.label}>Integration Method</label>
                     <div className={styles.radioGrid}>
-                      {['proprietary', 'openid-centralized', 'federated'].map((method) => (
+                      {['openid4vci'].map((method) => (
                         <label 
                           key={method}
                           className={`${styles.radioCard} ${integrationMethod === method ? styles.active : ''}`}
@@ -343,17 +394,11 @@ export default function Onboarding() {
                             style={{ display: 'none' }}
                           />
                           <span className={styles.radioLabel}>
-                            {method.replace('-', ' ')}
+                            OpenID4VCI
                           </span>
                         </label>
                       ))}
                     </div>
-                    {integrationMethod === 'openid-centralized' && (
-                      <div className={styles.infoBox}>
-                        <span>ℹ️</span>
-                        <p>For OpenID Centralized flow, ensure you host a `/.well-known/openid-configuration` with your public key settings after onboarding.</p>
-                      </div>
-                    )}
                   </div>
                 </motion.div>
               )}

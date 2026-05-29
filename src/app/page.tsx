@@ -14,6 +14,8 @@ type TrustEntity = {
 
 export default function Home() {
   const [entities, setEntities] = useState<TrustEntity[]>([]);
+  const [wallets, setWallets] = useState<TrustEntity[]>([]);
+  const [activeTab, setActiveTab] = useState<'verifiers' | 'wallets'>('verifiers');
   const [selectedEntity, setSelectedEntity] = useState<TrustEntity | null>(null);
   
   // Pagination state
@@ -52,25 +54,51 @@ export default function Home() {
       }
   };
 
+  const fetchWallets = async () => {
+      try {
+        const response = await fetch('/api/wallets');
+        if (response.ok) {
+          const data = await response.json();
+          const formatted = data.map((w: any) => ({
+            id: w.id,
+            name: w.name,
+            type: w.integrationMethod,
+            status: w.status || "Active",
+            domain: w.domain || "N/A",
+            logoUrl: w.logoUrl,
+            cryptoData: w.certificatePem
+          }));
+          setWallets(formatted.reverse());
+        }
+      } catch (err) {
+        console.error(err);
+      }
+  };
+
   useEffect(() => {
     fetchVerifiers();
+    fetchWallets();
   }, []);
 
-  const handleRevoke = async (verifierId: string) => {
-    const password = window.prompt("Enter Admin Password to revoke this verifier:");
+  const handleRevoke = async (entityId: string, entityType: 'verifiers' | 'wallets') => {
+    const typeLabel = entityType === 'verifiers' ? 'Verifier' : 'Wallet';
+    const password = window.prompt(`Enter Admin Password to revoke this ${typeLabel}:`);
     if (!password) return;
 
     try {
       setIsRevoking(true);
       setRevokeError('');
       
-      const response = await fetch('/api/verifiers/revoke', {
+      const endpoint = entityType === 'verifiers' ? '/api/verifiers/revoke' : '/api/wallets/revoke';
+      const bodyPayload = entityType === 'verifiers' ? { verifierId: entityId } : { walletId: entityId };
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${password}`
         },
-        body: JSON.stringify({ verifierId })
+        body: JSON.stringify(bodyPayload)
       });
 
       if (!response.ok) {
@@ -78,8 +106,9 @@ export default function Home() {
         throw new Error(data.error || 'Failed to revoke');
       }
 
-      alert("Verifier successfully revoked.");
-      await fetchVerifiers();
+      alert(`${typeLabel} successfully revoked.`);
+      if (entityType === 'verifiers') await fetchVerifiers();
+      else await fetchWallets();
       setSelectedEntity(prev => prev ? { ...prev, status: "Revoked" } : null);
     } catch (err: any) {
       setRevokeError(err.message);
@@ -107,13 +136,15 @@ export default function Home() {
 
       alert("Trust Anchor Key successfully rotated. All active verifier certificates have been regenerated.");
       await fetchVerifiers(); // refresh
+      await fetchWallets(); // refresh
     } catch (err: any) {
       alert("Error: " + err.message);
     }
   };
 
-  const totalPages = Math.ceil(entities.length / itemsPerPage);
-  const currentEntities = entities.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const activeEntities = activeTab === 'verifiers' ? entities : wallets;
+  const totalPages = Math.ceil(activeEntities.length / itemsPerPage);
+  const currentEntities = activeEntities.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="animate-fade-in">
@@ -132,11 +163,14 @@ export default function Home() {
           transition={{ delay: 0.2 }}
           style={{ color: "var(--text-secondary)", fontSize: "1.125rem", maxWidth: "600px", margin: "0 auto", paddingBottom: "2rem" }}
         >
-          The authoritative source for Aadhaar Verifiers. Enabling seamless verifiable credential exchange through cryptographically secured trust lists and OpenID Federation.
+          The authoritative source for Aadhaar Verifiers and Wallets. Enabling seamless verifiable credential exchange through cryptographically secured trust lists and OpenID Federation.
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-          <a href="/onboarding" className="btn-primary" style={{ textDecoration: 'none', padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <a href="/onboarding-verifier" className="btn-primary" style={{ textDecoration: 'none', padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}>
             Onboard New Verifier
+          </a>
+          <a href="/onboarding-wallet" className="btn-primary" style={{ textDecoration: 'none', padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px', background: 'linear-gradient(to right, #10B981, #059669)' }}>
+            Onboard New Wallet
           </a>
           <button onClick={handleRotateKey} className="btn-secondary" style={{ padding: '0.8rem 2rem', fontSize: '1.1rem', borderRadius: '12px' }}>
             Rotate Trust Anchor Key
@@ -153,8 +187,11 @@ export default function Home() {
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
           </div>
           <h3>Proprietary Specs</h3>
-          <p style={{ marginBottom: "1.5rem" }}>UIDAI Trust List API JSON endpoint for existing verifiers using static JWK based trust.</p>
-          <a href="/api/lote" target="_blank" className="btn-secondary" style={{ display: 'inline-block', fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none' }}>View UIDAI Trust List API</a>
+          <p style={{ marginBottom: "1.5rem" }}>UIDAI Trust List API JSON endpoint for existing entities using static JWK based trust.</p>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <a href="/api/lote?type=verifier" target="_blank" className="btn-secondary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none' }}>API (Verifiers)</a>
+            <a href="/api/lote?type=wallet" target="_blank" className="btn-secondary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none', borderColor: '#10B981', color: '#10B981' }}>API (Wallets)</a>
+          </div>
         </motion.div>
 
         <motion.div 
@@ -165,7 +202,7 @@ export default function Home() {
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
           </div>
           <h3>OpenID Federation</h3>
-          <p style={{ marginBottom: "1.5rem" }}>Dynamic trust establishment with Subordinate Entity Statements for Verifiers.</p>
+          <p style={{ marginBottom: "1.5rem" }}>Dynamic trust establishment with Subordinate Entity Statements for participants.</p>
           <a href="/.well-known/openid-federation" target="_blank" className="btn-secondary" style={{ display: 'inline-block', fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none' }}>View Anchor Config</a>
         </motion.div>
 
@@ -177,13 +214,52 @@ export default function Home() {
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           </div>
           <h3>Centralized OpenID4VP</h3>
-          <p style={{ marginBottom: "1.5rem" }}>X.509 certificate hosting within the centralized LoTE for static verifiers.</p>
-          <a href="/api/lote" target="_blank" className="btn-secondary" style={{ display: 'inline-block', fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none' }}>View Embedded X.509</a>
+          <p style={{ marginBottom: "1.5rem" }}>X.509 certificate hosting within the centralized LoTE for static participants.</p>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <a href="/api/lote?type=verifier" target="_blank" className="btn-secondary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none' }}>X.509 (Verifiers)</a>
+            <a href="/api/lote?type=wallet" target="_blank" className="btn-secondary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none', borderColor: '#10B981', color: '#10B981' }}>X.509 (Wallets)</a>
+          </div>
         </motion.div>
       </section>
 
       <section style={{ margin: "5rem 0" }}>
-        <h2 style={{ marginBottom: "1.5rem" }}>Trusted Verifiers (OVSE)</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: "1.5rem" }}>
+          <h2>{activeTab === 'verifiers' ? 'Trusted Verifiers' : 'Trusted Wallets'}</h2>
+          
+          <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(255,255,255,0.05)', padding: '0.25rem', borderRadius: '12px' }}>
+            <button 
+              onClick={() => {setActiveTab('verifiers'); setCurrentPage(1);}} 
+              style={{
+                padding: '0.5rem 1.5rem',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                background: activeTab === 'verifiers' ? 'var(--primary)' : 'transparent',
+                color: activeTab === 'verifiers' ? '#fff' : 'var(--text-secondary)'
+              }}
+            >
+              Verifiers
+            </button>
+            <button 
+              onClick={() => {setActiveTab('wallets'); setCurrentPage(1);}} 
+              style={{
+                padding: '0.5rem 1.5rem',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                background: activeTab === 'wallets' ? '#10B981' : 'transparent',
+                color: activeTab === 'wallets' ? '#fff' : 'var(--text-secondary)'
+              }}
+            >
+              Wallets
+            </button>
+          </div>
+        </div>
+
         <div className="glass-panel">
           <div className="table-wrapper">
             <table>
@@ -197,37 +273,45 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {currentEntities.map((entity: any) => (
-                  <tr key={entity.id}>
-                    <td>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        {entity.logoUrl ? (
-                          <img src={entity.logoUrl} alt="Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', background: '#fff' }} />
-                        ) : (
-                          <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <span style={{ fontSize: '1.2rem' }}>🏛️</span>
-                          </div>
-                        )}
-                        <div>
-                          <div style={{ fontWeight: 500, color: "var(--text-primary)" }}>{entity.name}</div>
-                          <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>{entity.id}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td style={{ fontFamily: "monospace", fontSize: "0.9rem" }}>{entity.domain}</td>
-                    <td>
-                      <span className="badge badge-info">{entity.type}</span>
-                    </td>
-                    <td>
-                      <span className={`badge ${entity.status === 'Active' ? 'badge-success' : 'badge-info'}`} style={entity.status === 'Revoked' ? { background: 'rgba(239, 68, 68, 0.1)', color: '#f87171', border: '1px solid rgba(239, 68, 68, 0.2)' } : {}}>
-                        {entity.status}
-                      </span>
-                    </td>
-                    <td>
-                      <button className="btn-secondary" style={{ padding: "0.4rem 1rem", fontSize: "0.8rem" }} onClick={() => setSelectedEntity(entity)}>Details</button>
+                {currentEntities.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
+                      No {activeTab} found in the registry.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  currentEntities.map((entity: any) => (
+                    <tr key={entity.id}>
+                      <td>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                          {entity.logoUrl ? (
+                            <img src={entity.logoUrl} alt="Logo" style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', background: '#fff' }} />
+                          ) : (
+                            <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <span style={{ fontSize: '1.2rem' }}>🏛️</span>
+                            </div>
+                          )}
+                          <div>
+                            <div style={{ fontWeight: 500, color: "var(--text-primary)" }}>{entity.name}</div>
+                            <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>{entity.id}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style={{ fontFamily: "monospace", fontSize: "0.9rem" }}>{entity.domain}</td>
+                      <td>
+                        <span className="badge badge-info">{entity.type}</span>
+                      </td>
+                      <td>
+                        <span className={`badge ${entity.status === 'Active' ? 'badge-success' : 'badge-info'}`} style={entity.status === 'Revoked' ? { background: 'rgba(239, 68, 68, 0.1)', color: '#f87171', border: '1px solid rgba(239, 68, 68, 0.2)' } : {}}>
+                          {entity.status}
+                        </span>
+                      </td>
+                      <td>
+                        <button className="btn-secondary" style={{ padding: "0.4rem 1rem", fontSize: "0.8rem" }} onClick={() => setSelectedEntity(entity)}>Details</button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -285,10 +369,10 @@ export default function Home() {
                     <button 
                       className="btn-secondary" 
                       style={{ color: '#f87171', borderColor: 'rgba(239, 68, 68, 0.3)' }}
-                      onClick={() => handleRevoke(selectedEntity.id)}
+                      onClick={() => handleRevoke(selectedEntity.id, activeTab)}
                       disabled={isRevoking}
                     >
-                      {isRevoking ? 'Revoking...' : 'Revoke Verifier'}
+                      {isRevoking ? 'Revoking...' : `Revoke ${activeTab === 'verifiers' ? 'Verifier' : 'Wallet'}`}
                     </button>
                   )}
                   <button className="btn-primary" onClick={() => { setSelectedEntity(null); setRevokeError(''); }}>Close Details</button>

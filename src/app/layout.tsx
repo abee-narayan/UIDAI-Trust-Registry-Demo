@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import Navbar from './Navbar';
 
 export const metadata: Metadata = {
   title: 'Aadhaar Trust Registry',
@@ -15,19 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="container">
-          <nav className="navbar animate-fade-in">
-            <div className="navbar-brand">
-              <span className="gradient-text">Aadhaar Trust Registry</span>
-            </div>
-            <div className="navbar-links">
-              <a href="/" className="active">Dashboard</a>
-              <a href="/docs">Developer Docs</a>
-              <a href="/api/lote" target="_blank">UIDAI Trust List API</a>
-              <a href="/api/crl" target="_blank">Revocation List (CRL)</a>
-              <a href="/.well-known/openid-federation" target="_blank">OpenID Federation</a>
-              <a href="/onboarding">Onboard</a>
-            </div>
-          </nav>
+          <Navbar />
           <main>
             {children}
           </main>

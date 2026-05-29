@@ -1,19 +1,20 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { signLoTE, getKeys } from '@/lib/crypto';
 import fs from 'fs/promises';
 import path from 'path';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const type = req.nextUrl.searchParams.get('type') || 'verifier';
   const { publicJwk } = await getKeys();
 
-  // Fetch dynamic verifiers
-  const verifiersPath = path.join(process.cwd(), 'data', 'verifiers.json');
+  // Fetch dynamic entities
+  const dataPath = path.join(process.cwd(), 'data', type === 'wallet' ? 'wallets.json' : 'verifiers.json');
   let dynamicProviders: any[] = [];
   try {
-    const verifiersData = await fs.readFile(verifiersPath, 'utf8');
-    const verifiers = JSON.parse(verifiersData);
+    const fileData = await fs.readFile(dataPath, 'utf8');
+    const entities = JSON.parse(fileData);
     
-    dynamicProviders = verifiers.map((v: any) => ({
+    dynamicProviders = entities.map((v: any) => ({
       tsp_name: v.name,
       tsp_information: {
         id: v.id,
@@ -21,7 +22,7 @@ export async function GET() {
       },
       services: [
         {
-          service_name: `Aadhaar Verifier (${v.integrationMethod})`,
+          service_name: `Aadhaar ${type === 'wallet' ? 'Wallet' : 'Verifier'} (${v.integrationMethod})`,
           service_type: "https://trust.aadhaar.gov.in/Trst/Svctype/IdV",
           status: v.status === "Revoked" 
             ? "https://trust.aadhaar.gov.in/Trst/Svcstatus/withdrawn" 
@@ -42,7 +43,9 @@ export async function GET() {
     sequence_number: 1,
     issue_date: new Date().toISOString(),
     next_update: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours
-    trust_service_providers: [
+    trust_service_providers: type === 'wallet' ? [
+      ...dynamicProviders
+    ] : [
       {
         tsp_name: "Ministry of Health",
         tsp_information: {

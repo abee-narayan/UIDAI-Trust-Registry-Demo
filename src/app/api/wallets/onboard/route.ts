@@ -8,14 +8,17 @@ import { getKeys } from '@/lib/crypto';
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const verifierName = formData.get('verifierName') as string;
+    const walletName = formData.get('walletName') as string;
     const domainName = formData.get('domainName') as string;
     const publicKeyPem = formData.get('publicKey') as string;
     const integrationMethod = formData.get('integrationMethod') as string;
     const logoFile = formData.get('logo') as File | null;
+    const androidPackageName = formData.get('androidPackageName') as string;
+    const callbackUrl = formData.get('callbackUrl') as string;
     const contactInfo = formData.get('contactInfo') as string;
+    const encryptionKey = formData.get('encryptionKey') as string;
 
-    if (!verifierName || !domainName || !publicKeyPem || !integrationMethod) {
+    if (!walletName || !domainName || !publicKeyPem || !integrationMethod) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -37,10 +40,10 @@ export async function POST(req: NextRequest) {
     const { pem: uidaiPrivateKeyPem } = await getKeys();
 
     const uidaiPrivateKey = forge.pki.privateKeyFromPem(uidaiPrivateKeyPem);
-    const verifierPublicKey = forge.pki.publicKeyFromPem(publicKeyPem);
+    const walletPublicKey = forge.pki.publicKeyFromPem(publicKeyPem);
 
     const cert = forge.pki.createCertificate();
-    cert.publicKey = verifierPublicKey;
+    cert.publicKey = walletPublicKey;
     cert.serialNumber = Date.now().toString();
     cert.validity.notBefore = new Date();
     cert.validity.notAfter = new Date();
@@ -48,7 +51,7 @@ export async function POST(req: NextRequest) {
 
     const attrs = [{
       name: 'commonName',
-      value: verifierName
+      value: walletName
     }];
     cert.setSubject(attrs);
     
@@ -76,31 +79,34 @@ export async function POST(req: NextRequest) {
     cert.sign(uidaiPrivateKey, forge.md.sha256.create());
     const pemCert = forge.pki.certificateToPem(cert);
 
-    // 3. Save Verifier Data
-    const verifiersPath = path.join(process.cwd(), 'data', 'verifiers.json');
-    let verifiers = [];
+    // 3. Save Wallet Data
+    const walletsPath = path.join(process.cwd(), 'data', 'wallets.json');
+    let wallets = [];
     try {
-      const verifiersData = await fs.readFile(verifiersPath, 'utf8');
-      verifiers = JSON.parse(verifiersData);
+      const walletsData = await fs.readFile(walletsPath, 'utf8');
+      wallets = JSON.parse(walletsData);
     } catch {
       // Ignore if file doesn't exist
     }
 
-    const newVerifier = {
+    const newWallet = {
       id: Date.now().toString(),
-      name: verifierName,
+      name: walletName,
       domain: domainName,
       status: 'Active',
       integrationMethod,
       logoUrl,
+      androidPackageName,
+      callbackUrl,
       contactInfo,
+      encryptionKey,
       certificatePem: pemCert,
       createdAt: new Date().toISOString()
     };
 
-    verifiers.push(newVerifier);
-    await fs.mkdir(path.dirname(verifiersPath), { recursive: true });
-    await fs.writeFile(verifiersPath, JSON.stringify(verifiers, null, 2));
+    wallets.push(newWallet);
+    await fs.mkdir(path.dirname(walletsPath), { recursive: true });
+    await fs.writeFile(walletsPath, JSON.stringify(wallets, null, 2));
 
     // 4. Create ZIP File
     const zip = new JSZip();
@@ -112,7 +118,7 @@ export async function POST(req: NextRequest) {
     return new NextResponse(zipBuffer as any, {
       headers: {
         'Content-Type': 'application/zip',
-        'Content-Disposition': 'attachment; filename="verifier_certificate.zip"'
+        'Content-Disposition': 'attachment; filename="wallet_certificate.zip"'
       }
     });
 
