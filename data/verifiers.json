@@ -2,7 +2,7 @@
   {
     "id": "1779779182341",
     "name": "MSC",
-    "integrationMethod": "openid-centralized",
+    "integrationMethod": "openid-offline",
     "logoUrl": "/logos/1779779182212-21d0ag.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxjCCAa6gAwIBAgIHAXeXeRgiITANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MDcwNjIyWhcNMjcwNTI2MDcw\r\nNjIyWjAOMQwwCgYDVQQDEwNNU0MwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK\r\nAoIBAQDTA1DQPaChAFL3e82Or+1n49O0ZEMCQL+NpCpp3GfDapOtG5hEEF2O5WAx\r\n0UP7jGdxZ4Gy00SiFpg3znNzwnclhm05jmR8iskg1FOgVdZROKC42a1UUCT6YYr+\r\ng+mugs/GqRpYGPnOsLImwXtZuMKYeQCkvj/YSmGOGPCXcJvzND9rP3KJydiXVtp+\r\nItb+EemzbtODSCS3oUmmDcgL/SpQ79i2u0+VhkxcnED0ZA0kptbZ7qTEhu6KUexW\r\nlB+HZueTLZWfmYa4PBewQKZjFg2ui+ZzH2T/Fuc0zL/fv1l4GZgEgZnU+FpQgyw+\r\n1o/+dKO7oV39K8z0/l+MQ/IccMWJAgMBAAGjGjAYMAkGA1UdEwQCMAAwCwYDVR0P\r\nBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQAP2cI1G2eXS4URsRISfTdumWttzQSr\r\nlyQl99hBJe+TOrICj7uYuYojndPtdLEox4HdcbDGJPcXhl27suLpe0aCcuRbS4ft\r\nOWibbaJEFi34TGLHpY7qK/5fKzBs7510Ljxgg8a8R5vXf5UzsBXn+x1e0tZt4OKQ\r\nALXV96rqy/sudbmCuD0KlPrBaUNs2p4J+ECGSwSitRZbq+alsIaPF8L0Jbepm8q8\r\nVZGRKw/NPvePDVWQQJGwqbywW+lTlPfFkKCrR6q/ql8SWIudaGt8GWKGHyf45pP7\r\nXfZG1cJxi6Br8LhOcbyu2ApL38mwTfD3COcV3iCuJmio+V12ZTV3+gnm\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-26T07:06:22.341Z",
@@ -12,7 +12,7 @@
   {
     "id": "1779779363334",
     "name": "MSC",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1779779363214-ig3u1v.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxjCCAa6gAwIBAgIHF3mABCkxQTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MTMwMDI5WhcNMjcwNTI2MTMw\r\nMDI5WjAOMQwwCgYDVQQDEwNNU0MwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK\r\nAoIBAQDfzy1iVRPnhzrco/N3BkPx4kmOTRqdIDen29omZU6o3X7NZj5Hjws5Gan1\r\n5SrXV3AWEnrk87Yp3cpee2Sk/kb6PfCLRRSj1FSwhKjwmWX2c2oAZiI5J1M+FCMd\r\njMSYWWiw8WFQbCUVQ/80SB/gP79qTdvSDXZNpoVv5xWnYstDPnmpnWbe/RzjTo/s\r\n/Xkn0HnToGoVbr5XoGQJyRd9FgROGhK1az4+XcK2+t480YpPjxrMgSZYCGPbG0nQ\r\nFfd7uxWJBUuOlbE73LOIR8syqO8RdS5jdXzIod2LmWGAGIIngsI+ND9wYymcHEMb\r\nsmcdk887GmmUBaWuvnNaNJPYeon1AgMBAAGjGjAYMAkGA1UdEwQCMAAwCwYDVR0P\r\nBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQBv7hUDLh06LlHjvKbz1tZA4try0it6\r\nr7GJyrFRFBvUbWZxbKv+vtM6YSxCRAzcDCFWDeUyI6EVYVCP/3QonbxY8PbSu7bC\r\nAHeS6EP4RYhAnvjOlMSbKwyaNE4UNdIv2yN3sWy08VwsIuexMWqvPbiUDCvsmtxD\r\nFpf3CSLW4TFsrsjxGtXALLpAoqiIOZTCTW7pmlEmHnBod+VcMDHweXNUyJNw/VuS\r\nQ/UpORmKEJ5mlGLUGIegfBPRmI7cVsHA0m2PRoz1JjJmrWMSS4Gl436ZmYzCFdvq\r\n/6uNXu5weptmwjLIL7yhJO0rvHZBcnvgJhKFc3xGaep5MNSsXzeCXmcA\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-26T07:09:23.334Z"
@@ -28,7 +28,7 @@
   {
     "id": "1779793529459",
     "name": "Microsave",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1779793529330-1efegg.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICzDCCAbSgAwIBAgIHF3mABClFgzANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MTMwMDI5WhcNMjcwNTI2MTMw\r\nMDI5WjAUMRIwEAYDVQQDEwlNaWNyb3NhdmUwggEiMA0GCSqGSIb3DQEBAQUAA4IB\r\nDwAwggEKAoIBAQC/ApltecDBFCnMYOve4eyHPNkwnfzT/pBW2H0XG1gPP/lyqA6X\r\n/OYCwbDURi8RTCVwXogWCe6k6si1w8axwUqYZ+CVUccTyw2V6k0pbdu5403W0Npl\r\nSTrptC8GcLtwr4pz6Y+G5dJI1i+L0RShWD4yYqEhF5O4jDf/uzcT00jhYLcQZnlT\r\nrd3wnvWX1IStWez+tshKyjIC8azDug2ZtdUUJLwFcIhZRewBfnPPabKoPUm8uy9k\r\n1LTHxrFT7V8aPesTjUtVkJj5kRxFw7rLvs5W1gZUuhTosnocnSAt2KWtdSR/XR3p\r\nQSb+8EAZMKHMvvuxJXG9wfmzcnONfPL2KHS3AgMBAAGjGjAYMAkGA1UdEwQCMAAw\r\nCwYDVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQAD+zaQ0WpwZ4nUZKbfv1h0\r\nbnNHxbV9GtGCJleWHogphGXCX8oQHbMFEGXVIrxMsdRym4W+wb1rKw5xA/9L9Wah\r\nCm3cJ3FYoDy/yvllP0ELk5sLZ5AY/s9Ao2gcgXUXTa4y8IQe7L9LY4n04GPyxOHq\r\n2kfKg4ZNmT9sKx3JZNVvciL0qzAADTKkgRlXvH0tEcMxh1LkOIRaoSy70oaLsZQK\r\nZrLahzPs/wPQfja1qCrtGdt6BqbySzFBjyEFCZ5fVDorWtZf81OKSk9+a0oDxR2Y\r\nP0ZmE5a/OMV2kqI/34ZrivMH34/akf9hhVXAq0X64EBXuOgZjVn8yAu7s+zIo/qJ\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-26T11:05:29.459Z"
@@ -37,7 +37,7 @@
     "id": "1779793818668",
     "name": "UIDAI",
     "domain": "uidai.gov.in",
-    "integrationMethod": "openid-centralized",
+    "integrationMethod": "openid-offline",
     "logoUrl": "/logos/1779793818589-bsgzzy.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICyDCCAbCgAwIBAgIHF3mABClQBDANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MTMwMDI5WhcNMjcwNTI2MTMw\r\nMDI5WjAQMQ4wDAYDVQQDEwVVSURBSTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC\r\nAQoCggEBAL8CmW15wMEUKcxg697h7Ic82TCd/NP+kFbYfRcbWA8/+XKoDpf85gLB\r\nsNRGLxFMJXBeiBYJ7qTqyLXDxrHBSphn4JVRxxPLDZXqTSlt27njTdbQ2mVJOum0\r\nLwZwu3CvinPpj4bl0kjWL4vRFKFYPjJioSEXk7iMN/+7NxPTSOFgtxBmeVOt3fCe\r\n9ZfUhK1Z7P62yErKMgLxrMO6DZm11RQkvAVwiFlF7AF+c89psqg9Sby7L2TUtMfG\r\nsVPtXxo96xONS1WQmPmRHEXDusu+zlbWBlS6FOiyehydIC3Ypa11JH9dHelBJv7w\r\nQBkwocy++7Elcb3B+bNyc4188vYodLcCAwEAAaMaMBgwCQYDVR0TBAIwADALBgNV\r\nHQ8EBAMCBPAwDQYJKoZIhvcNAQELBQADggEBAGRBrgznkGpzhCG6ZB4LnBj/fFU4\r\nUo9xHpdXA7uG4PxJ7kYbow5x+Mx7LVnNVE5DKlEdTRV2ktmVafnZyZ6Gmo7PatLm\r\nz3lGCT/RY7wDL+9v41OvyDAySs8M2/zZMA0JwKXEad4DVxbqLo8vt7+SBG+CzDtv\r\nYab0hVft7Wg+9IK1hei+QmHcDPzLaLhqlYe39+L3ELnhP/THqjr3I55CwpYv/O9D\r\nDtF5tdBSPjRZrbP0iL4MEp/1DoCdpZ4+1Nfis8P2BUfPTefNKZMnh4quZrXr06op\r\nrCq+UH96cKmC0rTCuFt3U0n+IBjq7slyzytWap+NyQLnDHUd6xDKD03Ubjo=\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-26T11:10:18.668Z"
@@ -47,7 +47,7 @@
     "name": "ABEE",
     "domain": "Uidai.gov.in",
     "status": "Active",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1779800759577-r6ze9b.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxzCCAa+gAwIBAgIHAXeYAHWWBjANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI2MTMwNTU5WhcNMjcwNTI2MTMw\r\nNTU5WjAPMQ0wCwYDVQQDEwRBQkVFMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\r\nCgKCAQEA0wNQ0D2goQBS93vNjq/tZ+PTtGRDAkC/jaQqadxnw2qTrRuYRBBdjuVg\r\nMdFD+4xncWeBstNEohaYN85zc8J3JYZtOY5kfIrJINRToFXWUTiguNmtVFAk+mGK\r\n/oPproLPxqkaWBj5zrCyJsF7WbjCmHkApL4/2Ephjhjwl3Cb8zQ/az9yicnYl1ba\r\nfiLW/hHps27Tg0gkt6FJpg3IC/0qUO/YtrtPlYZMXJxA9GQNJKbW2e6kxIbuilHs\r\nVpQfh2bnky2Vn5mGuDwXsECmYxYNrovmcx9k/xbnNMy/379ZeBmYBIGZ1PhaUIMs\r\nPtaP/nSju6Fd/SvM9P5fjEPyHHDFiQIDAQABoxowGDAJBgNVHRMEAjAAMAsGA1Ud\r\nDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEATXf/7ipLCD11eeXf5g6tAYcRvrze\r\nxqccHA5gX/hSTw0bV9480hfjdcLdWzmnxPSMLuFE+30EhCU6vhTy98Z0FQzrl2DH\r\nn2VzMNG/PDb8/Vp7Wc0ZoH/XOvjpbN20/BrHm3Cx6iaip2zAW0MemBHrslCw+d3O\r\nzPWuSFu1Wsji/v36WC9le7VBGv+wwCKXni3lPfUSeGDKAwsXSvmrQKhu0SmQe+nm\r\nO3BpRRhVvfVz/HislEZLAoywNdI10dhRKXTi9qdo/VQG/XKao+0IwZKFUiwrOTbc\r\ng9KYz/iYOkMO1Hlew688YrHssMjNTwvp9wNCrGTKbuCreevAsVuCF7FUVQ==\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-26T13:05:59.704Z"
@@ -57,7 +57,7 @@
     "name": "Telengana",
     "domain": "https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/verify-your-pan",
     "status": "Active",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1779882975281-w2hs1s.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICzDCCAbSgAwIBAgIHAXeYgpdSkzANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTE1NjE1WhcNMjcwNTI3MTE1\r\nNjE1WjAUMRIwEAYDVQQDEwlUZWxlbmdhbmEwggEiMA0GCSqGSIb3DQEBAQUAA4IB\r\nDwAwggEKAoIBAQCWwwfEDFMgCqqLiupuNA67uPe4g2hqJ3d9YulHtJK12gGGeFG4\r\npy9/Giz7aaoQWDU5Pkamln72SjIKRSxUYpLT7k6eeGIb8cS3TVRqu6pmxqe3Qy5g\r\n8hfUiNHRL2jAE4jqcsys7U2XW4DorUF2pnoYbWPvATthRG4HWXwA+VJWMv/FixjA\r\nAR7FpGmefJc2xzCa9zvbys7fWdcJSkA/3uK4OxVzvwFXw5j9y3bsjZ/fOGMrb/5J\r\n4SDXjCTY7IOJ/bsCBdORF69Gny6HfsywUD2bm3D3Q9vlK+XENieN2widJ10l4VeP\r\nL+pKJ7tsEjL9pnSY/BM99VoBAz82XoDm1iczAgMBAAGjGjAYMAkGA1UdEwQCMAAw\r\nCwYDVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQCBgsBY/rcqJwloyh+iUa8H\r\ng5OMbjDnDs98K8f4SfHaZnKhOp2XfyevD9aR1PxHjLIRaWNLu/CK3i6DGm++wlYF\r\nFR9oVi3K9lFW2gAtm4i3glQw6jsHbbH0lkcwd67edE0vxtct4PJHxza100S3jv0w\r\nvQ3Vj9ua2bu+pw8gBSbWA2bY+wRRropKcsQJhpySNNXtNf/HLKsB2LvP/hEnirKb\r\nolH5DkIBdi/sobDM/AJItw0WbwKEU+Om8aCZg0n0K1SOIgeX5qT1AZ8qwR3MEVJG\r\nCoGEd3NhyJXkwiCWB+mTk14lHNY6FLznDN94jhDNxq0iA5Dxax2QVye789XisRWw\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-27T11:56:15.473Z"
@@ -77,7 +77,7 @@
     "name": "Prassanna's company",
     "domain": "sandbox.uidai.gov.in",
     "status": "Active",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1779884477034-qkzci.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIIC1jCCAb6gAwIBAgIHAXeYhEdwUTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTIyMTE3WhcNMjcwNTI3MTIy\r\nMTE3WjAeMRwwGgYDVQQDExNQcmFzc2FubmEncyBjb21wYW55MIIBIjANBgkqhkiG\r\n9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlsMHxAxTIAqqi4rqbjQOu7j3uINoaid3fWLp\r\nR7SStdoBhnhRuKcvfxos+2mqEFg1OT5GppZ+9koyCkUsVGKS0+5OnnhiG/HEt01U\r\naruqZsant0MuYPIX1IjR0S9owBOI6nLMrO1Nl1uA6K1BdqZ6GG1j7wE7YURuB1l8\r\nAPlSVjL/xYsYwAEexaRpnnyXNscwmvc728rO31nXCUpAP97iuDsVc78BV8OY/ct2\r\n7I2f3zhjK2/+SeEg14wk2OyDif27AgXTkRevRp8uh37MsFA9m5tw90Pb5SvlxDYn\r\njdsInSddJeFXjy/qSie7bBIy/aZ0mPwTPfVaAQM/Nl6A5tYnMwIDAQABoxowGDAJ\r\nBgNVHRMEAjAAMAsGA1UdDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAXHiOacqa\r\nAFg3qnpdZZQ/2KDtDfAGt4YZiypDHOTfEnUJNGFzqkLsAr+AyrkSfrm8sBWBIVdk\r\nb/UzTY3e3ZSO2xtxnpDS3LMhpHZXsMXUnpHvAsdEEHK6Fmkgd9QVvk91DJrVeuak\r\nQPZqC0H2xbJBWYwlBehZ5uQXDG5W1v7kTouNI51GT6iSIBhTXPF3ynGLrrZz20Yl\r\nskeXJ+vYoPobS//ojSsh5jK6lIeB0hPjCAx0vk4a32klIdmZU6jMjypSV73BYP3Z\r\nwQgMBloD9V65gTQtsiH36krg0vP24ysEPu/3rYIb4uEGv4JFPSgqp9Gjo8YgYiIt\r\nBh0KyITqVTDKPA==\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-27T12:21:17.183Z"
@@ -87,9 +87,53 @@
     "name": "Zach's company",
     "domain": "sandbox.gov.in",
     "status": "Active",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1779884732244-byd02s.svg",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIIC0TCCAbmgAwIBAgIHAXeYhHMicTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI3MTIyNTMyWhcNMjcwNTI3MTIy\r\nNTMyWjAZMRcwFQYDVQQDEw5aYWNoJ3MgY29tcGFueTCCASIwDQYJKoZIhvcNAQEB\r\nBQADggEPADCCAQoCggEBAJbDB8QMUyAKqouK6m40Dru497iDaGond31i6Ue0krXa\r\nAYZ4UbinL38aLPtpqhBYNTk+RqaWfvZKMgpFLFRiktPuTp54YhvxxLdNVGq7qmbG\r\np7dDLmDyF9SI0dEvaMATiOpyzKztTZdbgOitQXamehhtY+8BO2FEbgdZfAD5UlYy\r\n/8WLGMABHsWkaZ58lzbHMJr3O9vKzt9Z1wlKQD/e4rg7FXO/AVfDmP3LduyNn984\r\nYytv/knhINeMJNjsg4n9uwIF05EXr0afLod+zLBQPZubcPdD2+Ur5cQ2J43bCJ0n\r\nXSXhV48v6konu2wSMv2mdJj8Ez31WgEDPzZegObWJzMCAwEAAaMaMBgwCQYDVR0T\r\nBAIwADALBgNVHQ8EBAMCBPAwDQYJKoZIhvcNAQELBQADggEBAIAKp7nJmaTpIhUc\r\nvrr8iQlsaNRkY8bvv7f3xaAx35YkwYojtPkgF2gZmfjGgCH2uB+2iv5FHlX1/LT7\r\nsa1xWGb1N+35MvXeFtu7gjOc6QXcdg4boEQSbuo2WpBCeACVhhlj1W2VIZfCkkSP\r\n8QD39AWK3pm8Kjx42SlCEe36LcNkz6SRa1Fanz46WXTX9HH0P+Wvs0KmsrAkmkTh\r\n7WIDc84kGKNzZBpR8EaBd9Uh9wfP8AuZ8FrX1AVjNEmZbcaDsR6vsbgQSqN1/zdY\r\nF2sBZI/B1f52Iaer45mkTzuogdLu5CJCXItOc5Fn4kRP9IYZUcH2GbXTSopGFg2W\r\nOgR5Tl8=\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-05-27T12:25:32.425Z"
+  },
+  {
+    "id": "1780044572421",
+    "name": "soumya",
+    "domain": "soumya.com",
+    "status": "Active",
+    "integrationMethod": "openid-federation",
+    "logoUrl": "/logos/1780044572216-yvtpiq.svg",
+    "contactInfo": "7890865556",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICyTCCAbGgAwIBAgIHAXgARFciQDANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNTI5MDg0OTMyWhcNMjcwNTI5MDg0\r\nOTMyWjARMQ8wDQYDVQQDEwZzb3VteWEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\r\nggEKAoIBAQDxaPZA2CEwbW9SkZno0s9ecrYSbQv+KjhTYRpk3vhLuedvUM2F/dbV\r\ngZxffxvcyDRFo3NqERJKKMXwvPn8RqpMGpi5//oEPKV8JoXNkqEeItxFwxMF3wgN\r\n4oefwptgXifI2YNJxjq7RdWjugsD04RuMmuSsG3PUAEtfBX3Xfq0E2P212CdxP0v\r\nxAyypXcNrpxSLQqMhWcB2mJD7Syd16VxG4nw786MJ8bRuLkAsv6VQnnePyy4HgCA\r\nmpqHaOQHIcHg+67EanoKOKwHjyMOi5hPTv0MS4n/+b350UG4ORjmaADLM1lHs2+Z\r\n5QxvRRXt4FofLFZm+RVjFS2OQ95UL0OfAgMBAAGjGjAYMAkGA1UdEwQCMAAwCwYD\r\nVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQAdzawfW4PPoiYi37xMcncS8HEt\r\nt4YMKHYIOEy5e3yOq2xpp6XMRzPHN+DvPquf/gB3Z/I0OdWdXQtEMHoGML5a3dMr\r\nab7P9/aXFGxgYVdVI9f8wqSlHj/sAsqdyU1q2EW8xLmXVrb3+jKH0wNJpuMxPHvM\r\nt207xGjp7ALmC3lSKBVonTMwjb/ce4ofT6jzlfQVSTuBPQ5x+WZXe0dOwOVOSky8\r\nN+uM72GJUl1L1N2zBvW7AmYLsYaVboyuu91MGOoqawKDvIPdiUcFksuMuhqcKWMh\r\nMP/e9HXGOl44+tj3zsWvQv0tllLq43Yuy03JuEPWPXK7TzE9sQirCPg2gCxb\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-05-29T08:49:32.421Z"
+  },
+  {
+    "id": "1780297832084",
+    "name": "Fime",
+    "domain": "Fime.com",
+    "status": "Active",
+    "integrationMethod": "openid-federation",
+    "logoUrl": "/logos/1780297831839-1gvfy2.jfif",
+    "contactInfo": "7907779096",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxzCCAa+gAwIBAgIHAXgCl4MYWTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNjAxMDcxMDMxWhcNMjcwNjAxMDcx\r\nMDMxWjAPMQ0wCwYDVQQDEwRGaW1lMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\r\nCgKCAQEAp+iCf8ruDYbpYhmy3txakjP/vNiMYaLBfCQQ2bf0uUO7bXs0sjJw52d8\r\nPGMhfRHG/8TWmfBVktzN+kC8WDrNUTHVWeaT1IwomSdJV4WwVbAW+lUImH0V7dlV\r\n3L/VZpSjcPLGUMJ8+wi57vN2w3ECkD3Zur5uAasvp9dooJRjRx2982k5HWodQVu6\r\nzjkHxrGSfByxy2YTnlASH5IWQLF8KAUFzwJpgItmjtRp8nhDceigxYtKFSRZThUi\r\n8tU3sUAXRglT8AIYDE/lWIDCQpu76h16rjL73bYN8z5drUHbR0VxxzUr3lPRaV9M\r\nxdKsZydyCc6cZEPYzXoBQ8uzNB2fNQIDAQABoxowGDAJBgNVHRMEAjAAMAsGA1Ud\r\nDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAk4gMrfpRRKayQlNTeUTw1p6dQXTj\r\n/QUg3OCtN6ymcqGaOZJ5xyK7sxEEupDtPS0b8GHfVjFzqHQHXvGC5eGsgiU/49QY\r\nLAy0gW4rA8mfIIc67YBE9Ts2Btyw+Ulb6pTf645Y90z/HI+qs+icFPWHLTH5o6vp\r\nhd23/UmbBwq5vaTBD2+InCSCe7YjcUN3nGtPTCsXM97OIBqX0QIZ8wmG0gW6888U\r\nC56PQyssFdyleZeN9PJ/Mo0VZweKP4lmFfGFuvJ7C1jomN89Dw/ux9Z4B9SEkByg\r\n0Ea2FGBT85btJvmFrMILiAxwSLIHJS6f6HO5lHOMQ3zAkfS/J5nndVsE8w==\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-06-01T07:10:32.084Z"
+  },
+  {
+    "id": "1780380704667",
+    "name": "roshan",
+    "domain": "roshan.com",
+    "status": "Active",
+    "integrationMethod": "openid-federation",
+    "logoUrl": "/logos/1780380704445-9kcjip.jfif",
+    "contactInfo": "7907779096",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICyTCCAbGgAwIBAgIHAXgDgHBEgDANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNjAyMDYxMTQ0WhcNMjcwNjAyMDYx\r\nMTQ0WjARMQ8wDQYDVQQDEwZyb3NoYW4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\r\nggEKAoIBAQDR8WYoCJCGS7flOjxuCWZkXuNhV3hSSN0VMcvJJieg98z7tpoN+KEG\r\nKzjdqspNsDoLuub+mpu1X2ubsKlNd8pAEvC+Mr9UMgrpk6MRZ4DLiAzLPlQSbTxv\r\nYF4YSpIMFuToFU6+xbG+HkOmBWK7Kw320EdNfsU9nhYUnx+sS/i8YZkQH7GgeAWs\r\nnsZzM2pAtXv9Ev+zAR+2WiuvESSn/LSjuelXvh6U58png90h407lmbsCuBZk60v9\r\nNYGW0Fv2rF42Jlwn3UXhDB+6qPxEB1h1pbzUKJS9TRYNEdN2dxhoaaM+k2uXjjwq\r\nIN5VmHwEsTq9kj4KSos/kpFayzsgzOl7AgMBAAGjGjAYMAkGA1UdEwQCMAAwCwYD\r\nVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQB2fjh+P0gIzOf2ecLIk20+d5wq\r\nhVaJuCXrn58TnLD3bGpYO5+GcMv9xpURskwKFa5VSl1sZ4k3KaTdAxcQM8Y3HxGa\r\nY1io5w57SB0P6VU6W/xoUcpDfZ2RoGZltzVTTQaRynIDJYBTKoIDFcAuB7z1SDFI\r\nmAtjRkNVxvNCaNX919YpuFP+HwZUEo3RPY9damIXXEWmafRF8r4P4jksU3+SEu3S\r\nVs0nAXkatFGm47mRR2rKlZ/h7rTckoAGQU52J1YT0/jWiZ3bA9R+UoDhZEiD1qlC\r\nElcAbXbLkQcbsszXbnjo6rYWB98OoF+wUIRyzIXoHZHJ87BUMqGRVYyfeyFw\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-06-02T06:11:44.667Z"
+  },
+  {
+    "id": "1780639538702",
+    "name": "Fime",
+    "domain": "Fime.com",
+    "status": "Active",
+    "integrationMethod": "openid-federation",
+    "logoUrl": "/logos/1780639538465-0u8mub.svg",
+    "contactInfo": "",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxzCCAa+gAwIBAgIHAXgGOVOFBTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNjA1MDYwNTM4WhcNMjcwNjA1MDYw\r\nNTM4WjAPMQ0wCwYDVQQDEwRGaW1lMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\r\nCgKCAQEAxAfF/hMtSPnrqqsUPbnMB1/gbYX+6LUUfbQwF4pLQ9f3MSpPUzLonHyR\r\nTBmE6kdvDUi0hZ/uBd8rueeAp+NemrmSzMZ7kKSfoh/0Fu/Jbqz3WiWzPOkbZ0gP\r\nsmzPpWSLdqQfaWHyYDxUxv1KB0ZeCFNB1KHuyAfBsJ+hNuOQJDY/2OS/a01I8h3u\r\nHVZVcbXmNlvOLNzP4AZSkkZHr3cxS58K2VbF9QVrRZW7+CPC0T920tGgmSc1yXuK\r\nfmCA6kJxOwQOC4T6YZFibFjapi2VdmRHjgAV5X6MXF6ADGq71o457kgOz56SHmkI\r\nHmS7nNJIHW757GbC+/K8DeOhwDM87wIDAQABoxowGDAJBgNVHRMEAjAAMAsGA1Ud\r\nDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAhaP4zOS9gKTHJkjU4GasWsYeA/m7\r\nAvNAyFuHamhdzUy0K9lBkd24CC4noLJ6eslwks02O7loGhf2OGxYSO45ryRCAwKv\r\nH4MMxlmwmHx0rXpciN8YFA1FclP9sLlFHopkncxXy/df9cMZISaPtejoUmwnXvk3\r\npGpX6FNcmnD3YciV0hGG//J1+BeRwbm6AyQOzcuVuQspmT8SY2eT11AZ1DbTKn5v\r\nD3S13OXP+4QYM5Vco4d3PSrn/2QvMBKWLvhXL18P1oGdBg7AtSnG9MhzeqZUaE7v\r\nWT2igGzHJ0d4oRK0KeFwPtWCa6mRUfwcPx/QaGN/+M1tUMaaaZtSbtHtiQ==\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-06-05T06:05:38.702Z"
   }
 ]

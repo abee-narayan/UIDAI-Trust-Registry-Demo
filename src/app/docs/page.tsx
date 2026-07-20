@@ -34,7 +34,7 @@ export default function Docs() {
       </div>
 
       <div className="glass-panel" style={{ padding: "2rem", marginBottom: "2rem" }}>
-        <h2 style={{ marginBottom: "1rem", color: "var(--primary)" }}>2. OpenID4VP (Centralized)</h2>
+        <h2 style={{ marginBottom: "1rem", color: "var(--primary)" }}>2. OpenID4VP (Offline)</h2>
         <p style={{ marginBottom: "1rem" }}>
           For verifiers upgrading to OpenID for Verifiable Presentations (v1) but lacking the infrastructure to host their own dynamic Federation endpoints.
         </p>
@@ -47,18 +47,20 @@ export default function Docs() {
       </div>
 
       <div className="glass-panel" style={{ padding: "2rem" }}>
-        <h2 style={{ marginBottom: "1rem", color: "var(--primary)" }}>3. OpenID Federation (Dynamic)</h2>
+        <h2 style={{ marginBottom: "1rem", color: "var(--primary)" }}>3. OpenID Federation (Hybrid Authorization)</h2>
         <p style={{ marginBottom: "1rem" }}>
-          The ultimate dynamic trust establishment. Verifiers host their own OpenID Federation endpoints, while UIDAI acts as the Trust Anchor.
+          The dynamic trust establishment flow combining Wallet Authentication and Entity Statements. Verifiers host their OpenID endpoints, and UIDAI acts as the Trust Anchor granting access.
         </p>
         <h4 style={{ marginBottom: "0.5rem" }}>Authentication Flow:</h4>
         <ul style={{ listStylePosition: "inside", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
-          <li>UIDAI publishes its Trust Anchor Entity Configuration at <code>/.well-known/openid-federation</code>.</li>
-          <li>Verifier requests onboarding and receives a Subordinate Entity Statement from UIDAI at <code>/api/federation/fetch</code>.</li>
-          <li>The Aadhaar Wallet dynamically resolves the verifier's trust chain during a transaction, allowing the verifier to dynamically update their logo and policies without re-registering with UIDAI.</li>
+          <li>Verifier initiates the request by sending its <code>client_id</code> to the Wallet.</li>
+          <li>Wallet authenticates itself to the Trust Registry using a signed <code>client_assertion</code> JWT.</li>
+          <li>Trust Registry verifies the Wallet, authorizes the Verifier, and issues a <strong>Signed Entity Statement</strong>.</li>
+          <li>Wallet dynamically resolves the verifier's endpoint from the statement and posts the presentation.</li>
         </ul>
         <div style={{ background: "rgba(0,0,0,0.3)", padding: "1rem", borderRadius: "8px", marginTop: "1rem" }}>
-          <code>GET /api/federation/fetch?sub=https://your-domain.com</code>
+          <code style={{ display: 'block', marginBottom: '0.5rem' }}>POST /api/federation/verify</code>
+          <code style={{ color: '#aaa', fontSize: '0.85rem' }}>&#123; "entityId": "sbi.co.in", "client_assertion": "eyJ..." &#125;</code>
         </div>
       </div>
     </div>

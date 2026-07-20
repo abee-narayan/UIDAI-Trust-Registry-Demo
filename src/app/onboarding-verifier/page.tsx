@@ -341,7 +341,7 @@ export default function Onboarding() {
                   <div className={styles.formGroup} style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
                     <label className={styles.label}>Integration Method</label>
                     <div className={styles.radioGrid}>
-                      {['proprietary', 'openid-centralized', 'federated'].map((method) => (
+                      {['proprietary', 'openid-offline', 'openid-federation'].map((method) => (
                         <label 
                           key={method}
                           className={`${styles.radioCard} ${integrationMethod === method ? styles.active : ''}`}
@@ -360,10 +360,10 @@ export default function Onboarding() {
                         </label>
                       ))}
                     </div>
-                    {integrationMethod === 'openid-centralized' && (
+                    {integrationMethod === 'openid-offline' && (
                       <div className={styles.infoBox}>
                         <span>ℹ️</span>
-                        <p>For OpenID Centralized flow, ensure you host a `/.well-known/openid-configuration` with your public key settings after onboarding.</p>
+                        <p>For OpenID Offline flow, ensure you refresh and rotate your short-lived certificates periodically using standard automation scripts.</p>
                       </div>
                     )}
                   </div>

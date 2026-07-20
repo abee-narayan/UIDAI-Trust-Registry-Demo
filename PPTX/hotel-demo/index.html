@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marina Bay Sands Mockup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-bg">
+        <!-- Using a subtle, elegant dark gradient as a fallback for video -->
+        <div class="bg-gradient"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="logo">MBS HOTEL</div>
+        <nav class="nav-links">
+            <a href="#">Rooms & Suites</a>
+            <a href="#">Dining</a>
+            <a href="#">Experiences</a>
+        </nav>
+        <button class="btn btn-outline">Reservations</button>
+    </header>
+
+    <main class="hero">
+        <div class="content-wrapper">
+            <div class="hero-text">
+                <h1>Welcome to Unparalleled Luxury</h1>
+                <p>Fast-track your check-in securely using your National Digital Identity.</p>
+            </div>
+
+            <div class="checkin-card" id="checkinCard">
+                <h2>Express Check-In</h2>
+                <p class="subtitle">Securely verify your identity</p>
+
+                <div class="step" id="step1">
+                    <label for="countrySelect" class="label-title">Which country issued your digital identity?</label>
+                    <select id="countrySelect" class="custom-select">
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="sg">Singapore (Singpass)</option>
+                        <option value="in">India (Aadhaar / Google Wallet)</option>
+                        <option value="other">Other Countries</option>
+                    </select>
+                </div>
+
+                <div class="step hidden" id="step2">
+                    <div class="loader-container" id="loader">
+                        <div class="spinner"></div>
+                        <p>Generating secure verification request...</p>
+                        <p class="small-text">Trust Registry ID: <span id="trustId"></span></p>
+                    </div>
+
+                    <div class="qr-container hidden" id="qrContainer">
+                        <h3>Scan to Verify</h3>
+                        <p id="qrInstructions"></p>
+                        <div class="qr-box">
+                            <!-- Dummy QR code image -->
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=openid4vp://request?relying_party=sg-hotel-001" alt="QR Code" class="qr-image">
+                            <div class="qr-scanner-line"></div>
+                        </div>
+                        <div class="requested-attributes">
+                            <h4>Requested Information:</h4>
+                            <ul>
+                                <li><span class="icon">✓</span> Name</li>
+                                <li><span class="icon">✓</span> Photograph</li>
+                                <li><span class="icon">✓</span> Age > 18</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-primary" id="resetBtn">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="step hidden" id="step3">
+                     <div class="success-message">
+                        <div class="checkmark-circle">
+                            <div class="background"></div>
+                            <div class="checkmark draw"></div>
+                        </div>
+                        <h3>Identity Verified Successfully</h3>
+                        <p>Welcome back, valued guest. Your room key is being generated.</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

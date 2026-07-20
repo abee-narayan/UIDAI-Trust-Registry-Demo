@@ -4,7 +4,7 @@
     "name": "Samsung",
     "domain": "samsung.com",
     "status": "Active",
-    "integrationMethod": "federated",
+    "integrationMethod": "openid-federation",
     "logoUrl": "/logos/1780040442576-gz7n8.svg",
     "androidPackageName": "com.samsung.android",
     "callbackUrl": "samsung.com/wallet/aadhaar",

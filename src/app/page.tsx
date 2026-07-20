@@ -45,7 +45,7 @@ export default function Home() {
           const allEntities = [
             ...formatted,
             { id: "VER-1001", name: "Ministry of Health", type: "proprietary", status: "Active", domain: "health.gov.in", cryptoData: JSON.stringify({ jwk: { kty: "RSA", e: "AQAB", n: "mock_modulus...", alg: "RS256" } }, null, 2) },
-            { id: "VER-1002", name: "State Bank of India", type: "federated", status: "Active", domain: "sbi.co.in", cryptoData: JSON.stringify({ federation_fetch_endpoint: "/api/federation/fetch?sub=https://sbi.co.in" }, null, 2) },
+            { id: "VER-1002", name: "State Bank of India", type: "federated", status: "Active", domain: "sbi.co.in", cryptoData: JSON.stringify({ federation_fetch_endpoint: "/fetch?sub=https://sbi.co.in" }, null, 2) },
           ];
           setEntities(allEntities.reverse());
         }
@@ -213,8 +213,8 @@ export default function Home() {
           <div className="icon-box">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           </div>
-          <h3>Centralized OpenID4VP</h3>
-          <p style={{ marginBottom: "1.5rem" }}>X.509 certificate hosting within the centralized LoTE for static participants.</p>
+          <h3>Offline OpenID4VP</h3>
+          <p style={{ marginBottom: "1.5rem" }}>X.509 certificate hosting within the centralized LoTE for offline participants.</p>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
             <a href="/api/lote?type=verifier" target="_blank" className="btn-secondary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none' }}>X.509 (Verifiers)</a>
             <a href="/api/lote?type=wallet" target="_blank" className="btn-secondary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', textDecoration: 'none', borderColor: '#10B981', color: '#10B981' }}>X.509 (Wallets)</a>
