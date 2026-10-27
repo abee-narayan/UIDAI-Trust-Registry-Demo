@@ -51,9 +51,11 @@ export default function Docs() {
         <p style={{ marginBottom: "1rem" }}>
           The dynamic trust establishment flow combining Wallet Authentication and Entity Statements. Verifiers host their OpenID endpoints, and UIDAI acts as the Trust Anchor granting access.
         </p>
-        <h4 style={{ marginBottom: "0.5rem" }}>Authentication Flow:</h4>
+        <h4 style={{ marginBottom: "0.5rem" }}>Onboarding & Authentication Flow:</h4>
         <ul style={{ listStylePosition: "inside", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
-          <li>Verifier initiates the request by sending its <code>client_id</code> to the Wallet.</li>
+          <li>During onboarding under <strong>OpenID Federation</strong>, the participant generates an <strong>ECDSA</strong> key pair (P-256 / P-384 / P-521) and creates a <strong>Certificate Signing Request (.csr)</strong>.</li>
+          <li>The Trust Registry verifies and signs the CSR to issue an <strong>X.509 Certificate</strong> for the federated entity.</li>
+          <li>Verifier initiates the presentation request by sending its <code>client_id</code> to the Wallet.</li>
           <li>Wallet authenticates itself to the Trust Registry using a signed <code>client_assertion</code> JWT.</li>
           <li>Trust Registry verifies the Wallet, authorizes the Verifier, and issues a <strong>Signed Entity Statement</strong>.</li>
           <li>Wallet dynamically resolves the verifier's endpoint from the statement and posts the presentation.</li>

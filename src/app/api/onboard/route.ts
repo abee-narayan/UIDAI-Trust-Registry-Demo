@@ -1,22 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
-import forge from 'node-forge';
 import JSZip from 'jszip';
 import fs from 'fs/promises';
 import path from 'path';
-import { getKeys } from '@/lib/crypto';
+import { issueX509Certificate } from '@/lib/crypto';
 
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const verifierName = formData.get('verifierName') as string;
     const domainName = formData.get('domainName') as string;
-    const publicKeyPem = formData.get('publicKey') as string;
+    const publicKeyPem = (formData.get('publicKey') as string) || '';
+    const csrPem = (formData.get('csr') as string) || '';
     const integrationMethod = formData.get('integrationMethod') as string;
     const logoFile = formData.get('logo') as File | null;
     const contactInfo = formData.get('contactInfo') as string;
 
-    if (!verifierName || !domainName || !publicKeyPem || !integrationMethod) {
+    if (!verifierName || !domainName || (!publicKeyPem && !csrPem) || !integrationMethod) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    if (integrationMethod === 'openid-federation' && !csrPem.trim()) {
+      return NextResponse.json(
+        { error: 'A Certificate Signing Request (CSR) is required for OpenID Federation onboarding.' },
+        { status: 400 }
+      );
     }
 
     // 1. Process Logo
@@ -33,48 +40,13 @@ export async function POST(req: NextRequest) {
       logoUrl = `/logos/${filename}`;
     }
 
-    // 2. Generate X.509 Certificate
-    const { pem: uidaiPrivateKeyPem } = await getKeys();
-
-    const uidaiPrivateKey = forge.pki.privateKeyFromPem(uidaiPrivateKeyPem);
-    const verifierPublicKey = forge.pki.publicKeyFromPem(publicKeyPem);
-
-    const cert = forge.pki.createCertificate();
-    cert.publicKey = verifierPublicKey;
-    cert.serialNumber = Date.now().toString();
-    cert.validity.notBefore = new Date();
-    cert.validity.notAfter = new Date();
-    cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 1);
-
-    const attrs = [{
-      name: 'commonName',
-      value: verifierName
-    }];
-    cert.setSubject(attrs);
-    
-    // Issuer is UIDAI
-    const issuerAttrs = [{
-      name: 'commonName',
-      value: 'UIDAI Trust Anchor'
-    }];
-    cert.setIssuer(issuerAttrs);
-
-    // Extensions
-    cert.setExtensions([{
-      name: 'basicConstraints',
-      cA: false
-    }, {
-      name: 'keyUsage',
-      keyCertSign: false,
-      digitalSignature: true,
-      nonRepudiation: true,
-      keyEncipherment: true,
-      dataEncipherment: true
-    }]);
-
-    // Sign the certificate with UIDAI's private key
-    cert.sign(uidaiPrivateKey, forge.md.sha256.create());
-    const pemCert = forge.pki.certificateToPem(cert);
+    // 2. Generate X.509 Certificate (signs CSR if provided, or signs Public Key directly)
+    const { certificatePem: pemCert } = await issueX509Certificate({
+      commonName: verifierName,
+      domainName,
+      publicKeyPem,
+      csrPem,
+    });
 
     // 3. Save Verifier Data
     const verifiersPath = path.join(process.cwd(), 'data', 'verifiers.json');
@@ -86,7 +58,7 @@ export async function POST(req: NextRequest) {
       // Ignore if file doesn't exist
     }
 
-    const newVerifier = {
+    const newVerifier: Record<string, any> = {
       id: Date.now().toString(),
       name: verifierName,
       domain: domainName,
@@ -95,6 +67,7 @@ export async function POST(req: NextRequest) {
       logoUrl,
       contactInfo,
       certificatePem: pemCert,
+      ...(csrPem.trim() ? { csrPem: csrPem.trim() } : {}),
       createdAt: new Date().toISOString()
     };
 
@@ -105,6 +78,9 @@ export async function POST(req: NextRequest) {
     // 4. Create ZIP File
     const zip = new JSZip();
     zip.file('certificate.pem', pemCert);
+    if (csrPem.trim()) {
+      zip.file('request.csr', csrPem.trim());
+    }
     
     // Send zip to client
     const zipBuffer = await zip.generateAsync({ type: 'nodebuffer' });

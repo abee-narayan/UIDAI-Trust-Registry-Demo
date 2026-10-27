@@ -51,6 +51,7 @@ The system supports three integration methods for participants to accommodate va
 
 3. **OpenID Federation Profile**
    - Utilizes the **OpenID Federation 1.0** standard.
+   - During onboarding under the OpenID Federation profile, participants generate an **ECDSA** key pair (`ES256`, `ES384`, or `ES512`) and generate a PKCS#10 **Certificate Signing Request (`.csr`)**, which is cryptographically verified and signed by the Trust Registry to issue an X.509 certificate.
    - The Trust Registry acts as a Trust Anchor and exposes JWS-signed Entity Statements that allow participants to dynamically resolve and validate trust chains. Participants may optionally query lightweight status APIs for operational optimization; however, trust decisions shall be based on validation of signed federation metadata and trust chains.
    - Participants dynamically retrieve the entity's metadata and public key material through its OpenID Federation Entity Configuration endpoint (`/.well-known/openid-federation`). Trust is established by validating the JWS-signed Entity Statements and resolving the authority chain from the participating entity back to the UIDAI Trust Anchor.
 

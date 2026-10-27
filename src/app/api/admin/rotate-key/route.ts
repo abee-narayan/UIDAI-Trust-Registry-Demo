@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
+import crypto from 'crypto';
 import forge from 'node-forge';
-import { clearKeyCache } from '@/lib/crypto';
+import { clearKeyCache, issueX509Certificate } from '@/lib/crypto';
 
 export async function POST(req: NextRequest) {
   try {
@@ -35,50 +36,19 @@ export async function POST(req: NextRequest) {
       // Ignore if file doesn't exist
     }
 
-    const uidaiPrivateKey = forge.pki.privateKeyFromPem(newCaPem);
-
     for (let i = 0; i < verifiers.length; i++) {
       const v = verifiers[i];
       if (v.status === 'Active' || !v.status) { // assume active if missing
         try {
-          // Extract their public key from the old certificate
-          const oldCert = forge.pki.certificateFromPem(v.certificatePem);
-          const verifierPublicKey = oldCert.publicKey;
+          const oldX509 = new crypto.X509Certificate(v.certificatePem);
+          const publicKeyPem = oldX509.publicKey.export({ type: 'spki', format: 'pem' }) as string;
 
-          // Generate new certificate
-          const cert = forge.pki.createCertificate();
-          cert.publicKey = verifierPublicKey;
-          cert.serialNumber = Date.now().toString() + i.toString(); // unique SN
-          cert.validity.notBefore = new Date();
-          cert.validity.notAfter = new Date();
-          cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 1);
-
-          const attrs = [{
-            name: 'commonName',
-            value: v.name
-          }];
-          cert.setSubject(attrs);
-          
-          const issuerAttrs = [{
-            name: 'commonName',
-            value: 'UIDAI Trust Anchor'
-          }];
-          cert.setIssuer(issuerAttrs);
-
-          cert.setExtensions([{
-            name: 'basicConstraints',
-            cA: false
-          }, {
-            name: 'keyUsage',
-            keyCertSign: false,
-            digitalSignature: true,
-            nonRepudiation: true,
-            keyEncipherment: true,
-            dataEncipherment: true
-          }]);
-
-          cert.sign(uidaiPrivateKey, forge.md.sha256.create());
-          const newPemCert = forge.pki.certificateToPem(cert);
+          const { certificatePem: newPemCert } = await issueX509Certificate({
+            commonName: v.name,
+            domainName: v.domain,
+            publicKeyPem,
+            csrPem: v.csrPem || null,
+          });
 
           // Update the verifier record
           verifiers[i].certificatePem = newPemCert;

@@ -135,5 +135,27 @@
     "contactInfo": "",
     "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICxzCCAa+gAwIBAgIHAXgGOVOFBTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYwNjA1MDYwNTM4WhcNMjcwNjA1MDYw\r\nNTM4WjAPMQ0wCwYDVQQDEwRGaW1lMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\r\nCgKCAQEAxAfF/hMtSPnrqqsUPbnMB1/gbYX+6LUUfbQwF4pLQ9f3MSpPUzLonHyR\r\nTBmE6kdvDUi0hZ/uBd8rueeAp+NemrmSzMZ7kKSfoh/0Fu/Jbqz3WiWzPOkbZ0gP\r\nsmzPpWSLdqQfaWHyYDxUxv1KB0ZeCFNB1KHuyAfBsJ+hNuOQJDY/2OS/a01I8h3u\r\nHVZVcbXmNlvOLNzP4AZSkkZHr3cxS58K2VbF9QVrRZW7+CPC0T920tGgmSc1yXuK\r\nfmCA6kJxOwQOC4T6YZFibFjapi2VdmRHjgAV5X6MXF6ADGq71o457kgOz56SHmkI\r\nHmS7nNJIHW757GbC+/K8DeOhwDM87wIDAQABoxowGDAJBgNVHRMEAjAAMAsGA1Ud\r\nDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAhaP4zOS9gKTHJkjU4GasWsYeA/m7\r\nAvNAyFuHamhdzUy0K9lBkd24CC4noLJ6eslwks02O7loGhf2OGxYSO45ryRCAwKv\r\nH4MMxlmwmHx0rXpciN8YFA1FclP9sLlFHopkncxXy/df9cMZISaPtejoUmwnXvk3\r\npGpX6FNcmnD3YciV0hGG//J1+BeRwbm6AyQOzcuVuQspmT8SY2eT11AZ1DbTKn5v\r\nD3S13OXP+4QYM5Vco4d3PSrn/2QvMBKWLvhXL18P1oGdBg7AtSnG9MhzeqZUaE7v\r\nWT2igGzHJ0d4oRK0KeFwPtWCa6mRUfwcPx/QaGN/+M1tUMaaaZtSbtHtiQ==\r\n-----END CERTIFICATE-----\r\n",
     "createdAt": "2026-06-05T06:05:38.702Z"
+  },
+  {
+    "id": "1793084065094",
+    "name": "truscholar",
+    "domain": "truscholar.com",
+    "status": "Active",
+    "integrationMethod": "proprietary",
+    "logoUrl": "/logos/1793084064835-rzhbt9.svg",
+    "contactInfo": "7907779096",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICzTCCAbWgAwIBAgIHAXkwhAZIcjANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYxMDI3MDY1NDI0WhcNMjcxMDI3MDY1\r\nNDI0WjAVMRMwEQYDVQQDEwp0cnVzY2hvbGFyMIIBIjANBgkqhkiG9w0BAQEFAAOC\r\nAQ8AMIIBCgKCAQEAsW+mNq1MCv5PrvkgrzwNSO43T4b73r2bPjsMPMvnqIiMchr+\r\nmtBhabhbsCJhVBPofxHlaklRj5EG2eG/ZeTBKkAKn/BsAKHN3+iLS43NbODoaOAq\r\nebuXkiangJMSbSEVgABLmHY8nUYbsJL26mPhtxuGNNBgGpxrDA1zFCEDWU/iXLMX\r\n2S/LsjD3YqIUwgEtar3vU3e6AB7qdx8ZODBVbJz1ZTH7cdqG1VfwdfOFKtOhO8Ht\r\nb00fwy/BjusY0FcWt3YB2gDSHpH3YOX/75vLhFAHR2p/7P7i8caH4IQOOlK0apvM\r\nJMGdgzjxCDIIPMPei3vBnCn5mVg6vThbnYTj2wIDAQABoxowGDAJBgNVHRMEAjAA\r\nMAsGA1UdDwQEAwIE8DANBgkqhkiG9w0BAQsFAAOCAQEAjczsxcVWFNo7eh14vW2R\r\n5y9Coty5NBr3UQsqKpXPid2csYDNMHkmIEouH/M5EVpsG3+2ZWE6R1tXXTOfmGhs\r\nn693uqHiQc4pFrSq1wtF7ZfjyGj1+YffZSQrtWAEqQTQMc1IGSfuq+zewAx/wDP/\r\nrT5he8gXaToJVsr7WT3BTZKaL1OIaG5qXVEd+R4D/JCsEIdU8V9kcqedPko0Os3Y\r\ny2x1SlN+fqs8wy9DpDhlmQJEHeuzuOFYtcBF0avkr+jxiP7snFOJVOddvT2T4dSV\r\npkZajzWXuGJSz7fKELO8n4JR4ylkVStch6GSU+b4aaW1UFSQB93hfqMHXrMiqNqh\r\ngg==\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-10-27T06:54:25.094Z"
+  },
+  {
+    "id": "1793085126373",
+    "name": "prassanna",
+    "domain": "prassanna.com",
+    "status": "Active",
+    "integrationMethod": "openid-offline",
+    "logoUrl": "/logos/1793085126150-hi5kk.svg",
+    "contactInfo": "7907779096",
+    "certificatePem": "-----BEGIN CERTIFICATE-----\r\nMIICzDCCAbSgAwIBAgIHAXkwhRJhcTANBgkqhkiG9w0BAQsFADAdMRswGQYDVQQD\r\nExJVSURBSSBUcnVzdCBBbmNob3IwHhcNMjYxMDI3MDcxMjA2WhcNMjcxMDI3MDcx\r\nMjA2WjAUMRIwEAYDVQQDEwlwcmFzc2FubmEwggEiMA0GCSqGSIb3DQEBAQUAA4IB\r\nDwAwggEKAoIBAQDTua3im8YZPBrGSG6geXdBehY642PVAtwNU3hWcQJQY8EAaIaI\r\nsGaeOJVy4aGkr+5NOiBYmIObwopFVw/D/p1A0+FcxQY5+nOQUpsuI7fbJP/TSsGt\r\nS55CbNpStIeHHinyaszmDWwn2nW2mE6mcGO4WwNpubY1MrNfNnICNkHfd98strGe\r\nGyHDJirXCp0yAndq98fpuUbcA4Nl8288ef0IjbOqBC+RhGQcCcOUrYpcdlwFKun/\r\nCO473Jnk+Ca8mOxmosbfdc87t8Qxb3wbjXiiVzN3G0twje77KMO09W4AN/PUNgZg\r\nPK/uvFKhmnVal2emDjEQYV+tHeoEITAnvkDnAgMBAAGjGjAYMAkGA1UdEwQCMAAw\r\nCwYDVR0PBAQDAgTwMA0GCSqGSIb3DQEBCwUAA4IBAQAdXrpdyRplMV51BDnlfYkA\r\n7mAm925jMbmETCUv9HXvjt8o3n8++g1hzTFPPKtTMrLUwn3AJNgIDOw6OuJn5Gna\r\nEBWWmoLO0CG6fW41avpK2Crfak52mEJaHjz/kBaCtrwkLjSAZSwNJ0kO7/xN8c9d\r\nyUjjihq5L4SGQPt6eja0N/E9lDD8ilz9HAd3VTFJ14pJymk9/s7/Sl79SwjpROhq\r\nZg4xGxVd8glzrbgu4ND1Ds1ebKHvb/aBgoBNbnK0cal771cHA4ViNEpOhillFgyG\r\nm/L7t/BvhvNyT3ebLgIdLtGV7Ajrx9PAUfrz6NdoVCkcMMcBDuFjGqQ9WQTP1vp9\r\n-----END CERTIFICATE-----\r\n",
+    "createdAt": "2026-10-27T07:12:06.373Z"
   }
 ]
